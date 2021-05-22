@@ -9,14 +9,21 @@ package Barangay_Padolina;
  *
  * @author Padolina Family
  */
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,12 +32,18 @@ public class BrgyPadolina extends javax.swing.JFrame {
     /**
      * Creates new form Test1
      */
+    Webcam wc;
     public BrgyPadolina() {
         initComponents();
-        testConnection();
-        showAllResidents();
-        dt();
-        times();
+//        testConnection();
+//        showAllResidents();
+//        dt();
+//        times();
+
+//        jlbl_status.setVisible(true);
+
+        wc = Webcam.getDefault();
+        wc.setViewSize(WebcamResolution.VGA.getSize());
 
     }
 
@@ -68,16 +81,16 @@ public class BrgyPadolina extends javax.swing.JFrame {
 
     }
 
-    Connection testConnection() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/padolinasystem", "root", "");
-            return connection;
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null;
-    }
+//    Connection testConnection() {
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/padolinasystem", "root", "");
+//            return connection;
+//        } catch (ClassNotFoundException | SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return null;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,8 +117,9 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jlbl_Date = new javax.swing.JLabel();
         jLblDate = new javax.swing.JLabel();
         jlbl_Time1 = new javax.swing.JLabel();
+        ButtonOff = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPaneSee = new javax.swing.JTabbedPane();
+        jlblOfficial = new javax.swing.JTabbedPane();
         jPanelHome1 = new javax.swing.JPanel();
         jLabelMission = new javax.swing.JLabel();
         jLabelVision = new javax.swing.JLabel();
@@ -115,10 +129,6 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jTextVision = new javax.swing.JTextArea();
         jPanelReport1 = new javax.swing.JPanel();
         jLblRprtsTitle = new javax.swing.JLabel();
-        jbCapture = new javax.swing.JButton();
-        jbCamera = new javax.swing.JButton();
-        tbWebCam = new javax.swing.JToggleButton();
-        tbCapture = new javax.swing.JToggleButton();
         jPanelAdd1 = new javax.swing.JPanel();
         jLblResidentInfoTitle = new javax.swing.JLabel();
         jLblFirstName = new javax.swing.JLabel();
@@ -142,6 +152,9 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jTxtFldReligion = new javax.swing.JTextField();
         jTxtFldOccupation = new javax.swing.JTextField();
         jBttnAddInfo = new javax.swing.JButton();
+        jlbl_profile = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jlbl_status = new javax.swing.JLabel();
         jPanelInfo1 = new javax.swing.JPanel();
         jLblResidentTitle = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -173,13 +186,43 @@ public class BrgyPadolina extends javax.swing.JFrame {
         choosePermit = new javax.swing.JComboBox<>();
         printButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jPanelOfficial = new javax.swing.JPanel();
+        jlblcap1 = new javax.swing.JLabel();
+        jlblcaptname = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jlblsec1 = new javax.swing.JLabel();
+        jlbltres1 = new javax.swing.JLabel();
+        jlblsecname = new javax.swing.JLabel();
+        jlbltresname = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jlblkag2 = new javax.swing.JLabel();
+        jlblkag3 = new javax.swing.JLabel();
+        jlblkag4 = new javax.swing.JLabel();
+        jlblkag5 = new javax.swing.JLabel();
+        jlblkag7 = new javax.swing.JLabel();
+        jlblkag6 = new javax.swing.JLabel();
+        jlblkag1 = new javax.swing.JLabel();
+        jlblkagname1 = new javax.swing.JLabel();
+        jlblkagname2 = new javax.swing.JLabel();
+        jlblkagname3 = new javax.swing.JLabel();
+        jlblkagname4 = new javax.swing.JLabel();
+        jlblkagname7 = new javax.swing.JLabel();
+        jlblkagname5 = new javax.swing.JLabel();
+        jlblkagname6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanelBackground.setBackground(new java.awt.Color(102, 102, 102));
+        jPanelBackground.setBackground(new java.awt.Color(213, 246, 249));
+        jPanelBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jPnlTitle.setBackground(new java.awt.Color(255, 255, 51));
+        jPnlTitle.setBackground(new java.awt.Color(255, 255, 153));
         jPnlTitle.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         jPnlTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -187,28 +230,22 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jLblTitle1.setText("Barangay Padolina Management System");
         jPnlTitle.add(jLblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 707, 70));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\x-mark-16.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPnlTitle.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 30, 30));
-
-        jLblIcon2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\circle-cropped.png")); // NOI18N
         jPnlTitle.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, -1, -1));
-
-        jlblIcon1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\circle-cropped (1).png")); // NOI18N
         jPnlTitle.add(jlblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 120, 110));
 
-        jPanelControl.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelControl.setBackground(new java.awt.Color(213, 246, 249));
         jPanelControl.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         jPanelControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonHome.setBackground(new java.awt.Color(255, 255, 255));
         jButtonHome.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonHome.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\house-24.png")); // NOI18N
         jButtonHome.setText("Home");
         jButtonHome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
@@ -216,12 +253,11 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 jButtonHomeActionPerformed(evt);
             }
         });
-        jPanelControl.add(jButtonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 248, 70));
+        jPanelControl.add(jButtonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 248, 50));
 
         jButtonReport.setBackground(new java.awt.Color(255, 255, 255));
         jButtonReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonReport.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonReport.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\report-2-24.png")); // NOI18N
         jButtonReport.setText("Report/Complains");
         jButtonReport.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jButtonReport.addActionListener(new java.awt.event.ActionListener() {
@@ -229,12 +265,11 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 jButtonReportActionPerformed(evt);
             }
         });
-        jPanelControl.add(jButtonReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 248, 70));
+        jPanelControl.add(jButtonReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 248, 50));
 
         jButtonAdding.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAdding.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonAdding.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonAdding.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\add-user-24.png")); // NOI18N
         jButtonAdding.setText("Add Resident");
         jButtonAdding.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jButtonAdding.addActionListener(new java.awt.event.ActionListener() {
@@ -242,12 +277,11 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 jButtonAddingActionPerformed(evt);
             }
         });
-        jPanelControl.add(jButtonAdding, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 250, 70));
+        jPanelControl.add(jButtonAdding, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 250, 50));
 
         jButtonInfo.setBackground(new java.awt.Color(255, 255, 255));
         jButtonInfo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonInfo.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonInfo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\edit-user-24.png")); // NOI18N
         jButtonInfo.setText("Resident Information");
         jButtonInfo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jButtonInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -255,12 +289,11 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 jButtonInfoActionPerformed(evt);
             }
         });
-        jPanelControl.add(jButtonInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 250, 60));
+        jPanelControl.add(jButtonInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 250, 50));
 
         jButtonPermit.setBackground(new java.awt.Color(255, 255, 255));
         jButtonPermit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonPermit.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonPermit.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\report-3-24.png")); // NOI18N
         jButtonPermit.setText("Permits");
         jButtonPermit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jButtonPermit.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +301,7 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 jButtonPermitActionPerformed(evt);
             }
         });
-        jPanelControl.add(jButtonPermit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 250, 59));
+        jPanelControl.add(jButtonPermit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 250, 50));
 
         jlblTime.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlblTime.setText("Time:");
@@ -288,12 +321,24 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jlbl_Time1.setForeground(new java.awt.Color(255, 0, 0));
         jPanelControl.add(jlbl_Time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 43, 118, 32));
 
+        ButtonOff.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonOff.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ButtonOff.setForeground(new java.awt.Color(51, 51, 51));
+        ButtonOff.setText("Officials");
+        ButtonOff.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        ButtonOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonOffActionPerformed(evt);
+            }
+        });
+        jPanelControl.add(ButtonOff, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 250, 50));
+
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPaneSee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
-        jTabbedPaneSee.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jlblOfficial.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
+        jlblOfficial.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
 
-        jPanelHome1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelHome1.setBackground(new java.awt.Color(213, 246, 249));
 
         jLabelMission.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabelMission.setText("Mission");
@@ -307,7 +352,7 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jTextMission.setColumns(20);
         jTextMission.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
         jTextMission.setRows(5);
-        jTextMission.setText("\n          Upang Maiwasan ang pagkaantala sa pagbibigay o \n          pagtugon sa pangangailangan o serbisyo\n          para sa mga residente o mamamayan ng barangay.");
+        jTextMission.setText("\n                           Upang Maiwasan ang pagkaantala sa pagbibigay o \n                           pagtugon sa pangangailangan o serbisyo\n                           para sa mga residente o mamamayan ng barangay.");
         jTextMission.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         jScrollPane1.setViewportView(jTextMission);
 
@@ -315,7 +360,7 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jTextVision.setColumns(20);
         jTextVision.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
         jTextVision.setRows(5);
-        jTextVision.setText("   \n        Mabilis at Maagap na Serbisyong pampubliko sa maayos na \n        palilingkod para sa mga residente o mamayan ng Barangay.\n");
+        jTextVision.setText("   \n                         Mabilis at Maagap na Serbisyong pampubliko sa maayos na \n                         paglilingkod para sa mga residente o mamayan ng Barangay.\n");
         jTextVision.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         jScrollPane2.setViewportView(jTextVision);
 
@@ -323,110 +368,63 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jPanelHome1.setLayout(jPanelHome1Layout);
         jPanelHome1Layout.setHorizontalGroup(
             jPanelHome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHome1Layout.createSequentialGroup()
-                .addGap(0, 101, Short.MAX_VALUE)
-                .addGroup(jPanelHome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79))
+            .addGroup(jPanelHome1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanelHome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)))
             .addGroup(jPanelHome1Layout.createSequentialGroup()
                 .addGroup(jPanelHome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelHome1Layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(jLabelVision, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(321, 321, 321)
+                        .addComponent(jLabelMission))
                     .addGroup(jPanelHome1Layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jLabelMission)))
+                        .addGap(327, 327, 327)
+                        .addComponent(jLabelVision, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHome1Layout.setVerticalGroup(
             jPanelHome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHome1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelVision, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
                 .addComponent(jLabelMission)
-                .addGap(34, 34, 34)
+                .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelVision, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPaneSee.addTab("              Home                ", jPanelHome1);
+        jlblOfficial.addTab("              Home                ", jPanelHome1);
 
-        jPanelReport1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelReport1.setBackground(new java.awt.Color(213, 246, 249));
 
         jLblRprtsTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLblRprtsTitle.setText("Reports/Complains");
         jLblRprtsTitle.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-
-        jbCapture.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jbCapture.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\save-as-24.png")); // NOI18N
-        jbCapture.setText("Save File");
-        jbCapture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-        jbCapture.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCaptureActionPerformed(evt);
-            }
-        });
-
-        jbCamera.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jbCamera.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\camera-4-24.png")); // NOI18N
-        jbCamera.setText("Capture");
-        jbCamera.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
-        jbCamera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCameraActionPerformed(evt);
-            }
-        });
-
-        tbWebCam.setBackground(new java.awt.Color(255, 255, 255));
-        tbWebCam.setForeground(new java.awt.Color(102, 153, 255));
-        tbWebCam.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-
-        tbCapture.setBackground(new java.awt.Color(255, 255, 255));
-        tbCapture.setForeground(new java.awt.Color(102, 153, 255));
-        tbCapture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
 
         javax.swing.GroupLayout jPanelReport1Layout = new javax.swing.GroupLayout(jPanelReport1);
         jPanelReport1.setLayout(jPanelReport1Layout);
         jPanelReport1Layout.setHorizontalGroup(
             jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelReport1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(304, Short.MAX_VALUE)
                 .addComponent(jLblRprtsTitle)
                 .addGap(303, 303, 303))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelReport1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbWebCam, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addGroup(jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbCapture, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbCapture, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90))
         );
         jPanelReport1Layout.setVerticalGroup(
             jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelReport1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLblRprtsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tbWebCam, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                    .addComponent(tbCapture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(110, 110, 110)
-                .addGroup(jPanelReport1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCapture, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
 
-        jTabbedPaneSee.addTab("      Report           ", jPanelReport1);
+        jlblOfficial.addTab("      Report           ", jPanelReport1);
 
-        jPanelAdd1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelAdd1.setBackground(new java.awt.Color(213, 246, 249));
 
         jLblResidentInfoTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLblResidentInfoTitle.setText("Adding Residents Information");
@@ -523,7 +521,6 @@ public class BrgyPadolina extends javax.swing.JFrame {
         });
 
         jBttnAddInfo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jBttnAddInfo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\add-user-24.png")); // NOI18N
         jBttnAddInfo.setText("Add");
         jBttnAddInfo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         jBttnAddInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -532,6 +529,15 @@ public class BrgyPadolina extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Take Pic");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jlbl_status.setText("1");
+
         javax.swing.GroupLayout jPanelAdd1Layout = new javax.swing.GroupLayout(jPanelAdd1);
         jPanelAdd1.setLayout(jPanelAdd1Layout);
         jPanelAdd1Layout.setHorizontalGroup(
@@ -539,58 +545,76 @@ public class BrgyPadolina extends javax.swing.JFrame {
             .addGroup(jPanelAdd1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                        .addComponent(jTxtFldDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jlbl_status, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                        .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtFldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtFldMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtFldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtFldGender, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addComponent(jlbl_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                                .addComponent(jLblOccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtFldOccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblResidentInfoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51))
                             .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                                .addComponent(jLblReligion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtFldReligion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                                .addComponent(jLblCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtFldCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                                .addComponent(jLblCivilStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtFldCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                        .addComponent(jTxtFldPLaceOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBttnAddInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdd1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLblResidentInfoTitle)
-                .addGap(181, 181, 181))
+                        .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                .addComponent(jTxtFldDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtFldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtFldMiddleName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtFldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtFldGender, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                                .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                        .addComponent(jLblOccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtFldOccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                        .addComponent(jLblReligion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtFldReligion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                        .addComponent(jLblCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtFldCitizenship, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                        .addComponent(jLblCivilStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtFldCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(42, 42, 42))
+                            .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                                .addComponent(jTxtFldPLaceOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBttnAddInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64))))))
         );
         jPanelAdd1Layout.setVerticalGroup(
             jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdd1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLblResidentInfoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addComponent(jlbl_status, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAdd1Layout.createSequentialGroup()
+                        .addComponent(jLblResidentInfoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbl_profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAdd1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
@@ -636,12 +660,13 @@ public class BrgyPadolina extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtFldPLaceOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBttnAddInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jBttnAddInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(87, 87, 87))
         );
 
-        jTabbedPaneSee.addTab("          Add       ", jPanelAdd1);
+        jlblOfficial.addTab("          Add       ", jPanelAdd1);
 
-        jPanelInfo1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanelInfo1.setBackground(new java.awt.Color(213, 246, 249));
 
         jLblResidentTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLblResidentTitle.setText("Residents Information");
@@ -663,7 +688,6 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTblResidentInfo);
 
         bttnDelete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bttnDelete.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\delete-24.png")); // NOI18N
         bttnDelete.setText("Delete");
         bttnDelete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         bttnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -673,7 +697,6 @@ public class BrgyPadolina extends javax.swing.JFrame {
         });
 
         bttnUpdate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bttnUpdate.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\available-updates-24.png")); // NOI18N
         bttnUpdate.setText("Update");
         bttnUpdate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         bttnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -928,7 +951,7 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 .addGap(195, 195, 195))
         );
 
-        jTabbedPaneSee.addTab("                Info           ", jPanelInfo1);
+        jlblOfficial.addTab("                Info           ", jPanelInfo1);
 
         jPanelPermit1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -953,7 +976,6 @@ public class BrgyPadolina extends javax.swing.JFrame {
         });
 
         printButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        printButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Desktop\\Wendel1.2\\Barangay_Management_System\\Pictures\\printer-24.png")); // NOI18N
         printButton.setText("Print");
         printButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         printButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -971,7 +993,7 @@ public class BrgyPadolina extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 827, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1007,16 +1029,220 @@ public class BrgyPadolina extends javax.swing.JFrame {
                 .addComponent(jLabelPermitTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanelPermit1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(choosePermit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
 
-        jTabbedPaneSee.addTab("       Permit      ", jPanelPermit1);
+        jlblOfficial.addTab("       Permit      ", jPanelPermit1);
 
-        jPanel1.add(jTabbedPaneSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 850, 680));
+        jPanelOfficial.setBackground(new java.awt.Color(213, 246, 249));
+
+        jlblcap1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblcaptname.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlblcaptname.setText("       Mulawin");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel5.setText("              Brgy.Captain");
+
+        jlblsec1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlbltres1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblsecname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlblsecname.setText("Abdul");
+
+        jlbltresname.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlbltresname.setText("Jabar");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel8.setText("Treasurer");
+
+        jLabel9.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel9.setText("Secretary");
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setText("KAGAWAD");
+
+        jlblkag2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkag1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jlblkagname1.setText("Alberto");
+
+        jlblkagname2.setText("Brentino");
+
+        jlblkagname3.setText("jLabel18");
+
+        jlblkagname4.setText("jLabel18");
+
+        jlblkagname7.setText("jLabel18");
+
+        jlblkagname5.setText("jLabel18");
+
+        jlblkagname6.setText("jLabel18");
+
+        jLabel1.setText("flag2");
+
+        jLabel2.setText("flag1");
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanelOfficialLayout = new javax.swing.GroupLayout(jPanelOfficial);
+        jPanelOfficial.setLayout(jPanelOfficialLayout);
+        jPanelOfficialLayout.setHorizontalGroup(
+            jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOfficialLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblkagname1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlblkag1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jlblkag2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jlblkag3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jlbltres1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                                        .addComponent(jLabel10)
+                                                        .addGap(96, 96, 96)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
+                                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                                .addComponent(jlblkag4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(jlblkag5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(34, 34, 34)))
+                                        .addComponent(jlblkag6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                        .addGap(91, 91, 91)
+                                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlbltresname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jlblkagname2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlblkagname3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlblkagname4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jlblkagname5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jlblkagname6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlblkagname7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jlblkag7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(46, 46, 46)))
+                .addGap(78, 78, 78))
+            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblsec1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlblsecname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGap(230, 230, 230)
+                                .addComponent(jlblcap1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                                .addGap(324, 324, 324)
+                                .addComponent(jlblcaptname, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelOfficialLayout.setVerticalGroup(
+            jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblcap1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanelOfficialLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblcaptname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblsec1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbltres1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblsecname)
+                    .addComponent(jlbltresname))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblkag2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblkag1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOfficialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblkagname1)
+                    .addComponent(jlblkagname2)
+                    .addComponent(jlblkagname3)
+                    .addComponent(jlblkagname4)
+                    .addComponent(jlblkagname5)
+                    .addComponent(jlblkagname6)
+                    .addComponent(jlblkagname7))
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+
+        jlblOfficial.addTab("Officials", jPanelOfficial);
+
+        jPanel1.add(jlblOfficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 600));
 
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
@@ -1048,7 +1274,9 @@ public class BrgyPadolina extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1056,310 +1284,60 @@ public class BrgyPadolina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void showAllResidents() {
-        try {
-            String insert = "SELECT * FROM residents";
-            Statement st = testConnection().createStatement();
-            ResultSet rs = st.executeQuery(insert);
-            Object[] fetchResidents = new Object[12];
-            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
-            while (rs.next()) {
-                fetchResidents[0] = rs.getInt("ID");
-                fetchResidents[1] = rs.getString("FIRSTNAME");
-                fetchResidents[2] = rs.getString("MIDDLENAME");
-                fetchResidents[3] = rs.getString("LASTNAME");
-                fetchResidents[4] = rs.getString("GENDER");
-                fetchResidents[5] = rs.getString("DOB");
-                fetchResidents[6] = rs.getString("POB");
-                fetchResidents[7] = rs.getString("CIVILSTATUS");
-                fetchResidents[8] = rs.getString("CITIZENSHIP");
-                fetchResidents[9] = rs.getString("RELIGION");
-                fetchResidents[10] = rs.getString("OCCUPATION");
-                mod.addRow(fetchResidents);
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            String insert = "SELECT * FROM residents";
+//            Statement st = testConnection().createStatement();
+//            ResultSet rs = st.executeQuery(insert);
+//            Object[] fetchResidents = new Object[12];
+//            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
+//            while (rs.next()) {
+//                fetchResidents[0] = rs.getInt("ID");
+//                fetchResidents[1] = rs.getString("FIRSTNAME");
+//                fetchResidents[2] = rs.getString("MIDDLENAME");
+//                fetchResidents[3] = rs.getString("LASTNAME");
+//                fetchResidents[4] = rs.getString("GENDER");
+//                fetchResidents[5] = rs.getString("DOB");
+//                fetchResidents[6] = rs.getString("POB");
+//                fetchResidents[7] = rs.getString("CIVILSTATUS");
+//                fetchResidents[8] = rs.getString("CITIZENSHIP");
+//                fetchResidents[9] = rs.getString("RELIGION");
+//                fetchResidents[10] = rs.getString("OCCUPATION");
+//                mod.addRow(fetchResidents);
+//
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
-    int id;
+//    int id;
 
     private void jButtonPermitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPermitActionPerformed
         // TODO add your handling code here:
-        jTabbedPaneSee.setSelectedIndex(4);
+        jlblOfficial.setSelectedIndex(4);
     }//GEN-LAST:event_jButtonPermitActionPerformed
 
     private void jButtonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInfoActionPerformed
         // TODO add your handling code here:
-        jTabbedPaneSee.setSelectedIndex(3);
+        jlblOfficial.setSelectedIndex(3);
     }//GEN-LAST:event_jButtonInfoActionPerformed
 
     private void jButtonAddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddingActionPerformed
-        jTabbedPaneSee.setSelectedIndex(2);
+        jlblOfficial.setSelectedIndex(2);
     }//GEN-LAST:event_jButtonAddingActionPerformed
 
     private void jButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportActionPerformed
         // TODO add your handling code here:
-        jTabbedPaneSee.setSelectedIndex(1);
+        jlblOfficial.setSelectedIndex(1);
     }//GEN-LAST:event_jButtonReportActionPerformed
 
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
         // TODO add your handling code here:
-        jTabbedPaneSee.setSelectedIndex(0);
+        jlblOfficial.setSelectedIndex(0);
     }//GEN-LAST:event_jButtonHomeActionPerformed
-
-    private void jbCaptureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCaptureActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCaptureActionPerformed
-
-    private void jTxtFldFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldFirstNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldFirstNameActionPerformed
-
-    private void jTxtFldMiddleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldMiddleNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldMiddleNameActionPerformed
-
-    private void jTxtFldLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldLastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldLastNameActionPerformed
-
-    private void jTxtFldGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldGenderActionPerformed
-
-    private void jTxtFldDateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldDateOfBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldDateOfBirthActionPerformed
-
-    private void jTxtFldPLaceOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldPLaceOfBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldPLaceOfBirthActionPerformed
-
-    private void jTxtFldCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldCivilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldCivilActionPerformed
-
-    private void jTxtFldCitizenshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldCitizenshipActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldCitizenshipActionPerformed
-
-    private void jTxtFldReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldReligionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldReligionActionPerformed
-
-    private void jTxtFldOccupationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldOccupationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFldOccupationActionPerformed
-
-    private void jBttnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnAddInfoActionPerformed
-
-        try {
-            String insert = "INSERT INTO `residents`(`FIRSTNAME`, `MIDDLENAME`, `LASTNAME`, `GENDER`, `DOB`, `POB`, `CIVILSTATUS`, `CITIZENSHIP`, `RELIGION`, `OCCUPATION`)VALUES(?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement st = testConnection().prepareStatement(insert);
-            st.setString(1, jTxtFldFirstName.getText());
-            st.setString(2, jTxtFldMiddleName.getText());
-            st.setString(3, jTxtFldLastName.getText());
-            st.setString(4, jTxtFldGender.getText());
-            st.setString(5, jTxtFldDateOfBirth.getText());
-            st.setString(6, jTxtFldPLaceOfBirth.getText());
-            st.setString(7, jTxtFldCivil.getText());
-            st.setString(8, jTxtFldCitizenship.getText());
-            st.setString(9, jTxtFldReligion.getText());
-            st.setString(10, jTxtFldOccupation.getText());
-            st.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Add Successfull");
-        } catch (SQLException ex) {
-            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-    }//GEN-LAST:event_jBttnAddInfoActionPerformed
-
-    private void jTblResidentInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblResidentInfoMouseClicked
-        id = (int) jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 0);
-        jTxtFldFirstName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 1).toString());
-        jTxtFldMiddleName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 2).toString());
-        jTxtFldGender.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 4).toString());
-        jTxtFldLastName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 3).toString());
-        jTxtFldDateOfBirth.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 5).toString());
-        jTxtFldPLaceOfBirth.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 6).toString());
-        jTxtFldCivil.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 7).toString());
-        jTxtFldCitizenship.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 8).toString());
-        jTxtFldReligion.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 9).toString());
-        jTxtFldOccupation.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 10).toString());
-        JOptionPane.showMessageDialog(this, id);
-    }//GEN-LAST:event_jTblResidentInfoMouseClicked
-
-    private void bttnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnDeleteActionPerformed
-        try {
-            String insert = "DELETE FROM residents where id = '" + id + "'";
-            PreparedStatement st = testConnection().prepareStatement(insert);
-            st.executeUpdate();
-            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
-            mod.setRowCount(0);
-            showAllResidents();
-        } catch (SQLException ex) {
-            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_bttnDeleteActionPerformed
-
-    private void bttnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnUpdateMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bttnUpdateMouseClicked
-
-    private void bttnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnUpdateActionPerformed
-        try {
-            String insert = "UPDATE residents SET`FIRSTNAME`=?, `MIDDLENAME`=?, `LASTNAME`=?, `GENDER`=?, `DOB`=?, `POB`=?, `CIVILSTATUS`=?, `CITIZENSHIP`=?, `RELIGION`=?, `OCCUPATION`=? where ID=?";
-            PreparedStatement st = testConnection().prepareStatement(insert);
-            st.setString(1, updateFname.getText());
-            st.setString(2, updateMname.getText());
-            st.setString(3, updateLname.getText());
-            st.setString(4, updateGender.getText());
-            st.setString(5, updateDoB.getText());
-            st.setString(6, updatePoB.getText());
-            st.setString(7, updateCivilStat.getText());
-            st.setString(8, updateCitizenship.getText());
-            st.setString(9, updateReligion.getText());
-            st.setString(10, updateOccupation.getText());
-            st.setInt(11, id);
-            st.executeUpdate();
-            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
-            mod.setRowCount(0);
-            showAllResidents();
-            updateFname.setText("");
-            updateMname.setText("");
-            updateLname.setText("");
-            updateGender.setText("");
-            updateDoB.setText("");
-            updatePoB.setText("");
-            updateCivilStat.setText("");
-            updateCitizenship.setText("");
-            updateReligion.setText("");
-            updateOccupation.setText("");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_bttnUpdateActionPerformed
-
-    private void updateFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateFnameActionPerformed
-
-    private void updateMnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateMnameActionPerformed
-
-    private void updateLnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateLnameActionPerformed
-
-    private void updateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateGenderActionPerformed
-
-    private void updateDoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDoBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateDoBActionPerformed
-
-    private void updateCivilStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCivilStatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateCivilStatActionPerformed
-
-    private void updateReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateReligionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateReligionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void updateMnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMnameKeyPressed
-
-    }//GEN-LAST:event_updateMnameKeyPressed
-
-    private void updateMnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMnameKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateMnameKeyTyped
-
-    private void updateFnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateFnameKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateFnameKeyTyped
-
-    private void updateLnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateLnameKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateLnameKeyTyped
-
-    private void updateGenderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateGenderKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateGenderKeyTyped
-
-    private void updateDoBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateDoBKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= '0' && k <= '9')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateDoBKeyTyped
-
-    private void updatePoBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updatePoBKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'Z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updatePoBKeyTyped
-
-    private void updateCivilStatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateCivilStatKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'Z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateCivilStatKeyTyped
-
-    private void updateCitizenshipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateCitizenshipKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'Z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateCitizenshipKeyTyped
-
-    private void updateReligionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateReligionKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'Z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateReligionKeyTyped
-
-    private void updateOccupationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateOccupationKeyTyped
-        char k = evt.getKeyChar();
-        if (!(k >= 'a' && k <= 'Z')) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_updateOccupationKeyTyped
-
-    private void jbCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCameraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCameraActionPerformed
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         // TODO add your handling code here:
@@ -1376,6 +1354,268 @@ public class BrgyPadolina extends javax.swing.JFrame {
     private void choosePermitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_choosePermitMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_choosePermitMouseClicked
+
+    private void updateOccupationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateOccupationKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'Z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateOccupationKeyTyped
+
+    private void updateReligionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateReligionKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'Z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateReligionKeyTyped
+
+    private void updateReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateReligionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateReligionActionPerformed
+
+    private void updateCitizenshipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateCitizenshipKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'Z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateCitizenshipKeyTyped
+
+    private void updateCivilStatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateCivilStatKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'Z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateCivilStatKeyTyped
+
+    private void updateCivilStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCivilStatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateCivilStatActionPerformed
+
+    private void updatePoBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updatePoBKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'Z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updatePoBKeyTyped
+
+    private void updateDoBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateDoBKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= '0' && k <= '9')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateDoBKeyTyped
+
+    private void updateDoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDoBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateDoBActionPerformed
+
+    private void updateGenderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateGenderKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateGenderKeyTyped
+
+    private void updateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateGenderActionPerformed
+
+    private void updateLnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateLnameKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateLnameKeyTyped
+
+    private void updateLnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateLnameActionPerformed
+
+    private void updateMnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMnameKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateMnameKeyTyped
+
+    private void updateMnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateMnameKeyPressed
+
+    }//GEN-LAST:event_updateMnameKeyPressed
+
+    private void updateMnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateMnameActionPerformed
+
+    private void updateFnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateFnameKeyTyped
+        char k = evt.getKeyChar();
+        if (!(k >= 'a' && k <= 'z')) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_updateFnameKeyTyped
+
+    private void updateFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateFnameActionPerformed
+
+    private void bttnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnUpdateActionPerformed
+        //        try {
+            //            String insert = "UPDATE residents SET`FIRSTNAME`=?, `MIDDLENAME`=?, `LASTNAME`=?, `GENDER`=?, `DOB`=?, `POB`=?, `CIVILSTATUS`=?, `CITIZENSHIP`=?, `RELIGION`=?, `OCCUPATION`=? where ID=?";
+            //            PreparedStatement st = testConnection().prepareStatement(insert);
+            //            st.setString(1, updateFname.getText());
+            //            st.setString(2, updateMname.getText());
+            //            st.setString(3, updateLname.getText());
+            //            st.setString(4, updateGender.getText());
+            //            st.setString(5, updateDoB.getText());
+            //            st.setString(6, updatePoB.getText());
+            //            st.setString(7, updateCivilStat.getText());
+            //            st.setString(8, updateCitizenship.getText());
+            //            st.setString(9, updateReligion.getText());
+            //            st.setString(10, updateOccupation.getText());
+            //            st.setInt(11, id);
+            //            st.executeUpdate();
+            //            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
+            //            mod.setRowCount(0);
+            //            showAllResidents();
+            //            updateFname.setText("");
+            //            updateMname.setText("");
+            //            updateLname.setText("");
+            //            updateGender.setText("");
+            //            updateDoB.setText("");
+            //            updatePoB.setText("");
+            //            updateCivilStat.setText("");
+            //            updateCitizenship.setText("");
+            //            updateReligion.setText("");
+            //            updateOccupation.setText("");
+            //
+            //        } catch (SQLException ex) {
+            //            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
+            //        }
+    }//GEN-LAST:event_bttnUpdateActionPerformed
+
+    private void bttnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnUpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttnUpdateMouseClicked
+
+    private void bttnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnDeleteActionPerformed
+        //        try {
+            //            String insert = "DELETE FROM residents where id = '" + id + "'";
+            //            PreparedStatement st = testConnection().prepareStatement(insert);
+            //            st.executeUpdate();
+            //            DefaultTableModel mod = (DefaultTableModel) jTblResidentInfo.getModel();
+            //            mod.setRowCount(0);
+            //            showAllResidents();
+            //        } catch (SQLException ex) {
+            //            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
+            //        }
+    }//GEN-LAST:event_bttnDeleteActionPerformed
+
+    private void jTblResidentInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblResidentInfoMouseClicked
+        //        id = (int) jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 0);
+        //        jTxtFldFirstName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 1).toString());
+        //        jTxtFldMiddleName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 2).toString());
+        //        jTxtFldGender.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 4).toString());
+        //        jTxtFldLastName.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 3).toString());
+        //        jTxtFldDateOfBirth.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 5).toString());
+        //        jTxtFldPLaceOfBirth.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 6).toString());
+        //        jTxtFldCivil.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 7).toString());
+        //        jTxtFldCitizenship.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 8).toString());
+        //        jTxtFldReligion.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 9).toString());
+        //        jTxtFldOccupation.setText(jTblResidentInfo.getValueAt(jTblResidentInfo.getSelectedRow(), 10).toString());
+        //        JOptionPane.showMessageDialog(this, id);
+    }//GEN-LAST:event_jTblResidentInfoMouseClicked
+
+    private void jBttnAddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnAddInfoActionPerformed
+
+        //        try {
+            //            String insert = "INSERT INTO `residents`(`FIRSTNAME`, `MIDDLENAME`, `LASTNAME`, `GENDER`, `DOB`, `POB`, `CIVILSTATUS`, `CITIZENSHIP`, `RELIGION`, `OCCUPATION`)VALUES(?,?,?,?,?,?,?,?,?,?)";
+            //            PreparedStatement st = testConnection().prepareStatement(insert);
+            //            st.setString(1, jTxtFldFirstName.getText());
+            //            st.setString(2, jTxtFldMiddleName.getText());
+            //            st.setString(3, jTxtFldLastName.getText());
+            //            st.setString(4, jTxtFldGender.getText());
+            //            st.setString(5, jTxtFldDateOfBirth.getText());
+            //            st.setString(6, jTxtFldPLaceOfBirth.getText());
+            //            st.setString(7, jTxtFldCivil.getText());
+            //            st.setString(8, jTxtFldCitizenship.getText());
+            //            st.setString(9, jTxtFldReligion.getText());
+            //            st.setString(10, jTxtFldOccupation.getText());
+            //            st.executeUpdate();
+            //            JOptionPane.showMessageDialog(this, "Add Successfull");
+            //        } catch (SQLException ex) {
+            //            Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
+            //
+            //        }
+    }//GEN-LAST:event_jBttnAddInfoActionPerformed
+
+    private void jTxtFldOccupationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldOccupationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldOccupationActionPerformed
+
+    private void jTxtFldReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldReligionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldReligionActionPerformed
+
+    private void jTxtFldCitizenshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldCitizenshipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldCitizenshipActionPerformed
+
+    private void jTxtFldCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldCivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldCivilActionPerformed
+
+    private void jTxtFldPLaceOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldPLaceOfBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldPLaceOfBirthActionPerformed
+
+    private void jTxtFldDateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldDateOfBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldDateOfBirthActionPerformed
+
+    private void jTxtFldGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldGenderActionPerformed
+
+    private void jTxtFldLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldLastNameActionPerformed
+
+    private void jTxtFldMiddleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldMiddleNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldMiddleNameActionPerformed
+
+    private void jTxtFldFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFldFirstNameActionPerformed
+
+    private void ButtonOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOffActionPerformed
+        // TODO add your handling code here:
+        jlblOfficial.setSelectedIndex(5);
+    }//GEN-LAST:event_ButtonOffActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (jlbl_status.getText().equals("1")) {
+            wc.open();
+            jlbl_status.setText("0");
+            new VideoFeeder().start();
+        }else{
+            try {
+                ImageIO.write(wc.getImage(), "JPG", new File("src/Images/" + jTxtFldFirstName.getText() + ".jpg"));
+               wc.close();
+           } catch (IOException ex) {
+               Logger.getLogger(BrgyPadolina.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1413,16 +1653,26 @@ public class BrgyPadolina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonOff;
     private javax.swing.JButton bttnDelete;
     private javax.swing.JButton bttnUpdate;
     private javax.swing.JComboBox<String> choosePermit;
     private javax.swing.JButton jBttnAddInfo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAdding;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonInfo;
     private javax.swing.JButton jButtonPermit;
     private javax.swing.JButton jButtonReport;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelMission;
     private javax.swing.JLabel jLabelPermitTitle;
     private javax.swing.JLabel jLabelVision;
@@ -1449,13 +1699,13 @@ public class BrgyPadolina extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelHome1;
     private javax.swing.JPanel jPanelInfo1;
+    private javax.swing.JPanel jPanelOfficial;
     private javax.swing.JPanel jPanelPermit1;
     private javax.swing.JPanel jPanelReport1;
     private javax.swing.JPanel jPnlTitle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPaneSee;
     private javax.swing.JTable jTblResidentInfo;
     private javax.swing.JTextArea jTextMission;
     private javax.swing.JTextArea jTextVision;
@@ -1469,15 +1719,34 @@ public class BrgyPadolina extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtFldOccupation;
     private javax.swing.JTextField jTxtFldPLaceOfBirth;
     private javax.swing.JTextField jTxtFldReligion;
-    private javax.swing.JButton jbCamera;
-    private javax.swing.JButton jbCapture;
     private javax.swing.JLabel jlblIcon1;
+    private javax.swing.JTabbedPane jlblOfficial;
     private javax.swing.JLabel jlblTime;
     private javax.swing.JLabel jlbl_Date;
     private javax.swing.JLabel jlbl_Time1;
+    private javax.swing.JLabel jlbl_profile;
+    private javax.swing.JLabel jlbl_status;
+    private javax.swing.JLabel jlblcap1;
+    private javax.swing.JLabel jlblcaptname;
+    private javax.swing.JLabel jlblkag1;
+    private javax.swing.JLabel jlblkag2;
+    private javax.swing.JLabel jlblkag3;
+    private javax.swing.JLabel jlblkag4;
+    private javax.swing.JLabel jlblkag5;
+    private javax.swing.JLabel jlblkag6;
+    private javax.swing.JLabel jlblkag7;
+    private javax.swing.JLabel jlblkagname1;
+    private javax.swing.JLabel jlblkagname2;
+    private javax.swing.JLabel jlblkagname3;
+    private javax.swing.JLabel jlblkagname4;
+    private javax.swing.JLabel jlblkagname5;
+    private javax.swing.JLabel jlblkagname6;
+    private javax.swing.JLabel jlblkagname7;
+    private javax.swing.JLabel jlblsec1;
+    private javax.swing.JLabel jlblsecname;
+    private javax.swing.JLabel jlbltres1;
+    private javax.swing.JLabel jlbltresname;
     private javax.swing.JButton printButton;
-    private javax.swing.JToggleButton tbCapture;
-    private javax.swing.JToggleButton tbWebCam;
     private javax.swing.JLabel upCitizenship8;
     private javax.swing.JLabel upCivil7;
     private javax.swing.JLabel upDoB5;
@@ -1500,4 +1769,20 @@ public class BrgyPadolina extends javax.swing.JFrame {
     private javax.swing.JTextField updateReligion;
     // End of variables declaration//GEN-END:variables
 
+    Image img;
+    
+    class VideoFeeder extends Thread {
+    
+          public void run(){
+          
+               while(true){
+                   img = wc.getImage();
+                   jlbl_profile.setIcon(new ImageIcon(img));
+//                       Thread.sleep(5000);
+                }
+          
+          }
+    
+    }
+    
 }
