@@ -5,17 +5,32 @@
  */
 package barangaypadolinasystem;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  *
- * @author 63926
+ * @author 63926ppppppppp
  */
 public class Residence extends javax.swing.JFrame {
 
     /**
      * Creates new form Residence
      */
+
+Webcam wc;
+
     public Residence() {
         initComponents();
+        wc = Webcam.getDefault();
+//        wc.setViewSize(WebcamResolution.VGA.getSize());Q#@$@$Q
     }
 
     /**
@@ -27,8 +42,38 @@ public class Residence extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jTxtFN = new javax.swing.JTextField();
+        jTxtMaiden = new javax.swing.JTextField();
+        jTxtCit = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jTxtSN = new javax.swing.JTextField();
+        jTxtRel = new javax.swing.JTextField();
+        jTxtCivStat = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTxtDOB = new javax.swing.JTextField();
+        jTxtPOB = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTxtContactNo = new javax.swing.JTextField();
+        jTxtHN = new javax.swing.JTextField();
+        jlbl_profile = new javax.swing.JLabel();
+        jBttnCap = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jBtnRAdd = new javax.swing.JButton();
+        jBtnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -43,7 +88,162 @@ public class Residence extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 10, 50, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 50, 40));
+
+        jTxtFN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
+        jPanel1.add(jTxtMaiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
+
+        jTxtCit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
+
+        jCheckBox1.setBackground(new java.awt.Color(102, 204, 255));
+        jCheckBox1.setText("Male");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
+
+        jCheckBox2.setBackground(new java.awt.Color(102, 204, 255));
+        jCheckBox2.setText("Female");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
+
+        jTxtSN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtSNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
+
+        jTxtRel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtRelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtRel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
+
+        jTxtCivStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCivStatActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCivStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel1.setText("First Name:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel2.setText("Maiden Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel3.setText("Last Name:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel4.setText("Gender:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel5.setText("Citizenship:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel6.setText("Religion:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel7.setText("Civil Status:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
+
+        jTxtDOB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtDOBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
+
+        jTxtPOB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtPOBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtPOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel8.setText("DOB:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel9.setText("POB:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setText("Contact Number:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setText("House Number:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
+
+        jTxtContactNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtContactNoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
+        jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
+        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 240, 120));
+
+        jBttnCap.setText("TAKE");
+        jBttnCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBttnCapActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
+
+        jBtnRAdd.setText("ADD");
+        jBtnRAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 120, 30));
+
+        jBtnEdit.setText("EDIT");
+        jBtnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 590, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,7 +253,7 @@ public class Residence extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, Short.MAX_VALUE)
         );
 
         pack();
@@ -64,6 +264,65 @@ public class Residence extends javax.swing.JFrame {
         this.dispose();
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTxtFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFNActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jTxtSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtSNActionPerformed
+
+    private void jTxtRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtRelActionPerformed
+
+    private void jTxtCivStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCivStatActionPerformed
+
+    private void jTxtCitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCitActionPerformed
+
+    private void jTxtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtDOBActionPerformed
+
+    private void jTxtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtContactNoActionPerformed
+
+    private void jTxtPOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtPOBActionPerformed
+
+    private void jBttnCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnCapActionPerformed
+         if (jBttnCap.getText().equals("TAKE")) {
+            wc.open();
+            jBttnCap.setText("CAPTURE");
+            new VideoFeeder().start();
+        }else{
+             try {
+                 ImageIO.write(wc.getImage(), "JPG", new File("src/Images/" + jTxtFN.getText() + ".jpg"));
+                 wc.close();
+             } catch (IOException ex) {
+                 java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             }
+        }
+    }//GEN-LAST:event_jBttnCapActionPerformed
+
+    private void jBtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnEditActionPerformed
+
+    private void jBtnRAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnRAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,7 +360,53 @@ public class Residence extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBtnEdit;
+    private javax.swing.JButton jBtnRAdd;
+    private javax.swing.JButton jBttnCap;
     private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTxtCit;
+    private javax.swing.JTextField jTxtCivStat;
+    private javax.swing.JTextField jTxtContactNo;
+    private javax.swing.JTextField jTxtDOB;
+    private javax.swing.JTextField jTxtFN;
+    private javax.swing.JTextField jTxtHN;
+    private javax.swing.JTextField jTxtMaiden;
+    private javax.swing.JTextField jTxtPOB;
+    private javax.swing.JTextField jTxtRel;
+    private javax.swing.JTextField jTxtSN;
+    private javax.swing.JLabel jlbl_profile;
     // End of variables declaration//GEN-END:variables
+
+     Image img;
+    
+    class VideoFeeder extends Thread {
+    
+          public void run(){
+          
+               while(true){
+                   img = wc.getImage();
+                   jlbl_profile.setIcon(new ImageIcon(img));
+//                       Thread.sleep(5000);
+                }
+          
+          }
+    
+    }
 }

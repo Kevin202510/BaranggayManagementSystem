@@ -29,6 +29,61 @@ public class BrgyOfficials extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTxtFName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtMaidenName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTxtLastName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jcbboy = new javax.swing.JCheckBox();
+        jcbgirl = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jTxtCits = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTxtRelig = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTxtCivStatus = new javax.swing.JTextField();
+        jTxtDOBirth = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTxtPOBirth = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTxtContactNum = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTxtHNumber = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTxtFN1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTxtMaiden1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTxtSN1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        jTxtCit1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jTxtRel1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jTxtCivStat1 = new javax.swing.JTextField();
+        jTxtDOB1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jTxtPOB1 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jTxtContactNo1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jTxtHN1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jBttnCap = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jTxtUsername = new javax.swing.JTextField();
+        jTxtPass = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,17 +97,311 @@ public class BrgyOfficials extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, 50, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 50, 40));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel1.setText("First Name:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
+
+        jTxtFName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel2.setText("Maiden Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
+        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel3.setText("Last Name:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
+
+        jTxtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtLastNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel4.setText("Gender:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
+
+        jcbboy.setBackground(new java.awt.Color(102, 204, 255));
+        jcbboy.setText("Male");
+        jPanel1.add(jcbboy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
+
+        jcbgirl.setBackground(new java.awt.Color(102, 204, 255));
+        jcbgirl.setText("Female");
+        jcbgirl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbgirlActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcbgirl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel5.setText("Citizenship:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
+
+        jTxtCits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCitsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCits, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel6.setText("Religion:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
+
+        jTxtRelig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtReligActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtRelig, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel7.setText("Civil Status:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
+
+        jTxtCivStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCivStatusActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCivStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
+
+        jTxtDOBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtDOBirthActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtDOBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel8.setText("DOB:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel9.setText("POB:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
+
+        jTxtPOBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtPOBirthActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtPOBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setText("Contact Number:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
+
+        jTxtContactNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtContactNumActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtContactNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setText("House Number:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
+        jPanel1.add(jTxtHNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel12.setText("First Name:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
+
+        jTxtFN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFN1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel13.setText("Maiden Name:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
+        jPanel1.add(jTxtMaiden1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel14.setText("Last Name:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
+
+        jTxtSN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtSN1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtSN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel15.setText("Gender:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
+
+        jCheckBox3.setBackground(new java.awt.Color(102, 204, 255));
+        jCheckBox3.setText("Male");
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
+
+        jCheckBox4.setBackground(new java.awt.Color(102, 204, 255));
+        jCheckBox4.setText("Female");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel16.setText("Citizenship:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
+
+        jTxtCit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCit1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel17.setText("Religion:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
+
+        jTxtRel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtRel1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtRel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel18.setText("Civil Status:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
+
+        jTxtCivStat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCivStat1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCivStat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
+
+        jTxtDOB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtDOB1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtDOB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel19.setText("DOB:");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel20.setText("POB:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
+
+        jTxtPOB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtPOB1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtPOB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel21.setText("Contact Number:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
+
+        jTxtContactNo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtContactNo1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtContactNo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel22.setText("House Number:");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
+        jPanel1.add(jTxtHN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
+
+        jLabel23.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel23.setText("jLabel12");
+        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 130, 120));
+
+        jBttnCap.setText("Capture");
+        jBttnCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBttnCapActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 102));
+        jPanel2.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                jPanel2ComponentRemoved(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1090, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1090, 50));
+
+        jTxtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtUsernameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, 160, 30));
+        jPanel1.add(jTxtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 630, 160, 30));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel24.setText("Username:");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 80, 30));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel25.setText("Password:");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 633, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
         );
 
         pack();
@@ -63,6 +412,90 @@ public class BrgyOfficials extends javax.swing.JFrame {
         this.dispose();
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTxtFNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFNameActionPerformed
+
+    private void jTxtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtLastNameActionPerformed
+
+    private void jcbgirlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbgirlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbgirlActionPerformed
+
+    private void jTxtCitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCitsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCitsActionPerformed
+
+    private void jTxtReligActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtReligActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtReligActionPerformed
+
+    private void jTxtCivStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCivStatusActionPerformed
+
+    private void jTxtDOBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtDOBirthActionPerformed
+
+    private void jTxtPOBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtPOBirthActionPerformed
+
+    private void jTxtContactNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtContactNumActionPerformed
+
+    private void jTxtFN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFN1ActionPerformed
+
+    private void jTxtSN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtSN1ActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jTxtCit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCit1ActionPerformed
+
+    private void jTxtRel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtRel1ActionPerformed
+
+    private void jTxtCivStat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCivStat1ActionPerformed
+
+    private void jTxtDOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOB1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtDOB1ActionPerformed
+
+    private void jTxtPOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOB1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtPOB1ActionPerformed
+
+    private void jTxtContactNo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtContactNo1ActionPerformed
+
+    private void jBttnCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnCapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBttnCapActionPerformed
+
+    private void jPanel2ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel2ComponentRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2ComponentRemoved
+
+    private void jTxtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,7 +533,62 @@ public class BrgyOfficials extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBttnCap;
     private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTxtCit1;
+    private javax.swing.JTextField jTxtCits;
+    private javax.swing.JTextField jTxtCivStat1;
+    private javax.swing.JTextField jTxtCivStatus;
+    private javax.swing.JTextField jTxtContactNo1;
+    private javax.swing.JTextField jTxtContactNum;
+    private javax.swing.JTextField jTxtDOB1;
+    private javax.swing.JTextField jTxtDOBirth;
+    private javax.swing.JTextField jTxtFN1;
+    private javax.swing.JTextField jTxtFName;
+    private javax.swing.JTextField jTxtHN1;
+    private javax.swing.JTextField jTxtHNumber;
+    private javax.swing.JTextField jTxtLastName;
+    private javax.swing.JTextField jTxtMaiden1;
+    private javax.swing.JTextField jTxtMaidenName;
+    private javax.swing.JTextField jTxtPOB1;
+    private javax.swing.JTextField jTxtPOBirth;
+    private javax.swing.JTextField jTxtPass;
+    private javax.swing.JTextField jTxtRel1;
+    private javax.swing.JTextField jTxtRelig;
+    private javax.swing.JTextField jTxtSN1;
+    private javax.swing.JTextField jTxtUsername;
+    private javax.swing.JCheckBox jcbboy;
+    private javax.swing.JCheckBox jcbgirl;
     // End of variables declaration//GEN-END:variables
 }

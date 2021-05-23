@@ -29,6 +29,17 @@ public class Permits extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jBtnadd1 = new javax.swing.JButton();
+        jBtnupdate1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtFN = new javax.swing.JTextField();
+        jTxtContactNo = new javax.swing.JTextField();
+        jTxtHN = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +53,81 @@ public class Permits extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 50, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 50, 40));
+
+        jBtnadd1.setText("ADD");
+        jPanel1.add(jBtnadd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 110, 30));
+
+        jBtnupdate1.setText("UPDATE");
+        jBtnupdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnupdate1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtnupdate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 110, 30));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 650, 340));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 153));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setText("PERMITS");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(375, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(325, 325, 325))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 50));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel2.setText("Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 70, 30));
+
+        jTxtFN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 160, 30));
+
+        jTxtContactNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtContactNoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, 160, 30));
+        jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, 160, 30));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setText("House Number:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 90, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setText("Contact Number:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,7 +137,7 @@ public class Permits extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
         );
 
         pack();
@@ -63,6 +148,18 @@ public class Permits extends javax.swing.JFrame {
         this.dispose();
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jBtnupdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnupdate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnupdate1ActionPerformed
+
+    private void jTxtFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFNActionPerformed
+
+    private void jTxtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtContactNoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,7 +197,18 @@ public class Permits extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnadd1;
+    private javax.swing.JButton jBtnupdate1;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTxtContactNo;
+    private javax.swing.JTextField jTxtFN;
+    private javax.swing.JTextField jTxtHN;
     // End of variables declaration//GEN-END:variables
 }
