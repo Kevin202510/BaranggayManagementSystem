@@ -81,14 +81,17 @@ Webcam wc;
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton4.setBackground(new java.awt.Color(255, 0, 0));
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton4.setText("X");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 50, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 50, 40));
 
         jTxtFN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,10 +109,12 @@ Webcam wc;
         jPanel1.add(jTxtCit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
 
         jCheckBox1.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jCheckBox1);
         jCheckBox1.setText("Male");
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
 
         jCheckBox2.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jCheckBox2);
         jCheckBox2.setText("Female");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +240,7 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 120, 30));
 
         jBtnEdit.setText("EDIT");
         jBtnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +248,7 @@ Webcam wc;
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 590, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,7 +258,9 @@ Webcam wc;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

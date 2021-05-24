@@ -52,7 +52,7 @@ public class Blotters extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBtnAdd.setText("Add");
-        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 170, 30));
+        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 170, 30));
 
         jBtnUpdate.setText("Update");
         jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -60,13 +60,13 @@ public class Blotters extends javax.swing.JFrame {
                 jBtnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 170, 30));
+        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 170, 30));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 750, 310));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 980, 140));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -107,49 +107,60 @@ public class Blotters extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel2.setText("Complainant:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 80, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel3.setText("Date of Report:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 90, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 90, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel4.setText("Date of Hearing:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, 100, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, 100, 30));
 
         jTxtFName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtFNameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 160, 30));
-        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, 160, 30));
+        jPanel1.add(jTxtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 160, 30));
+        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 160, 30));
 
         jTxtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtLastNameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, 160, 30));
+        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 160, 30));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel9.setText("BLOTTER REPORT");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 210, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 210, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Complainant", "Date of Report", "Date of Hearing"
+                "ID", "Blotter Report", "Complainant", "Date of Report", "Date of Hearing", "Hearing Count"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 580, 220));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(35);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(35);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(35);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 980, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
