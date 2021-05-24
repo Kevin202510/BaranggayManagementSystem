@@ -5,6 +5,21 @@
  */
 package barangaypadolinasystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 63926
@@ -16,6 +31,8 @@ public class Blotters extends javax.swing.JFrame {
      */
     public Blotters() {
         initComponents();
+        showBlotters();
+        jTxtMaidenName.setText(getDateNow());
     }
 
     /**
@@ -31,7 +48,7 @@ public class Blotters extends javax.swing.JFrame {
         jBtnAdd = new javax.swing.JButton();
         jBtnUpdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtxtarea_breport = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -40,10 +57,10 @@ public class Blotters extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTxtFName = new javax.swing.JTextField();
         jTxtMaidenName = new javax.swing.JTextField();
-        jTxtLastName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbl_blotter = new javax.swing.JTable();
+        jdate_of_hearing = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +69,11 @@ public class Blotters extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBtnAdd.setText("Add");
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
         jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 170, 30));
 
         jBtnUpdate.setText("Update");
@@ -62,9 +84,11 @@ public class Blotters extends javax.swing.JFrame {
         });
         jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 170, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtxtarea_breport.setColumns(10);
+        jtxtarea_breport.setLineWrap(true);
+        jtxtarea_breport.setRows(5);
+        jtxtarea_breport.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jtxtarea_breport);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 980, 140));
 
@@ -123,20 +147,15 @@ public class Blotters extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTxtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 160, 30));
-        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 160, 30));
 
-        jTxtLastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtLastNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 160, 30));
+        jTxtMaidenName.setEditable(false);
+        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 160, 30));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel9.setText("BLOTTER REPORT");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 210, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbl_blotter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,15 +171,21 @@ public class Blotters extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(35);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(35);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(35);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jtbl_blotter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbl_blotterMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtbl_blotter);
+        if (jtbl_blotter.getColumnModel().getColumnCount() > 0) {
+            jtbl_blotter.getColumnModel().getColumn(0).setMinWidth(35);
+            jtbl_blotter.getColumnModel().getColumn(0).setPreferredWidth(35);
+            jtbl_blotter.getColumnModel().getColumn(0).setMaxWidth(35);
+            jtbl_blotter.getColumnModel().getColumn(1).setPreferredWidth(100);
         }
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 980, 270));
+        jPanel1.add(jdate_of_hearing, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,6 +205,68 @@ public class Blotters extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    SqlConnection getDBConn = new SqlConnection();
+    Connection connection = getDBConn.DbconnectP();
+    
+    public void showBlotters(){
+    try {
+        DefaultTableModel model = (DefaultTableModel)jtbl_blotter.getModel();
+        Object[] rows = new Object[6];
+        String LoginQuery = "SELECT * FROM blotter";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        String gender;
+        
+        while(rs.next()){
+            rows[0] = rs.getInt("id");
+            rows[1] = rs.getString("blotter_report");
+            rows[2] = rs.getString("complainant");
+            rows[3] = rs.getString("date_of_report");
+            rows[4] = rs.getString("date_of_hearing");
+            rows[5] = rs.getInt("hearing_count");
+            model.addRow(rows);
+            
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+    
+    public String getDateNow(){
+         Date jlbl_date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        String strDate = dateFormat.format(jlbl_date);
+        return strDate;
+     }
+    
+     private void addResident(){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+    String strDate = dateFormat.format(jdate_of_hearing.getDate());
+    try {
+        String addresident = "INSERT INTO `blotter` (`blotter_report`, `complainant`, `date_of_report`, `date_of_hearing`) VALUES (?,?,?,?);";
+        PreparedStatement st = connection.prepareStatement(addresident);
+        st.setString(1, jtxtarea_breport.getText());
+        st.setString(2, jTxtFName.getText());
+        st.setString(3, getDateNow());
+        st.setString(4, strDate);
+        int i = st.executeUpdate();
+        if (i > 0) {
+            JOptionPane.showMessageDialog(this,"Successfully Added");
+            clearFilled();
+            DefaultTableModel mod = (DefaultTableModel)jtbl_blotter.getModel();
+            mod.setRowCount(0);
+            showBlotters();
+            
+        } else {
+            JOptionPane.showMessageDialog(this,"Error");
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
         new BarangayDashboard().setVisible(true);
@@ -193,10 +280,30 @@ public class Blotters extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtFNameActionPerformed
 
-    private void jTxtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtLastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtLastNameActionPerformed
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
+       addResident();
+    }//GEN-LAST:event_jBtnAddActionPerformed
+    int id;
+    private void jtbl_blotterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_blotterMouseClicked
+        try {
+            id = Integer.parseInt(jtbl_blotter.getValueAt(jtbl_blotter.getSelectedRow(),0).toString());
+            jtxtarea_breport.setText(jtbl_blotter.getValueAt(jtbl_blotter.getSelectedRow(),1).toString());
+            jTxtFName.setText(jtbl_blotter.getValueAt(jtbl_blotter.getSelectedRow(),2).toString());
+            jTxtMaidenName.setText(jtbl_blotter.getValueAt(jtbl_blotter.getSelectedRow(),3).toString());
+            String dateHearing = jtbl_blotter.getValueAt(jtbl_blotter.getSelectedRow(),4).toString();
+            Date doh = new SimpleDateFormat("yyyy-MM-dd").parse(dateHearing);
+            jdate_of_hearing.setDate(doh);
+        } catch (ParseException ex) {
+            Logger.getLogger(Blotters.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jtbl_blotterMouseClicked
 
+    private void clearFilled(){
+        jtxtarea_breport.setText("");
+        jTxtFName.setText("");
+        jTxtMaidenName.setText("");
+        jdate_of_hearing.setDate(null);
+    }
     /**
      * @param args the command line arguments
      */
@@ -245,10 +352,10 @@ public class Blotters extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTxtFName;
-    private javax.swing.JTextField jTxtLastName;
     private javax.swing.JTextField jTxtMaidenName;
+    private com.toedter.calendar.JDateChooser jdate_of_hearing;
+    private javax.swing.JTable jtbl_blotter;
+    private javax.swing.JTextArea jtxtarea_breport;
     // End of variables declaration//GEN-END:variables
 }
