@@ -282,7 +282,9 @@ Webcam wc;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -429,9 +431,9 @@ Webcam wc;
            jTxtPOB.setText(rs.getString("PoB"));
            jTxtContactNo.setText(rs.getString("contact_num"));
            jTxtHN.setText(rs.getString("house_num"));
-//         .setTxt(rs.getInt("purok_id"));
-//            model.addRow(rows);
-            
+           String prof = rs.getString("profile");
+           ImageIcon imgs = new ImageIcon(getClass().getResource("/Images/Pictures/"+prof+".jpg"));
+           jlbl_profile.setIcon(imgs);
         }
         
     } catch (SQLException ex) {
