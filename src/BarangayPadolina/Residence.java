@@ -83,6 +83,7 @@ Webcam wc;
         jBtnEdit = new javax.swing.JButton();
         jBtnRDelete = new javax.swing.JButton();
         jTxtDOB = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -202,7 +203,7 @@ Webcam wc;
         jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
 
         jlbl_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 160, 120));
+        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 120));
 
         jBttnCap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/compact-camera-16.png"))); // NOI18N
         jBttnCap.setText("TAKE");
@@ -212,7 +213,7 @@ Webcam wc;
                 jBttnCapActionPerformed(evt);
             }
         });
-        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 110, 100, -1));
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 100, -1));
 
         jtbl_residents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -255,30 +256,38 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 120, 30));
 
+        jBtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnEdit.setText("UPDATE");
+        jBtnEdit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 590, 120, 30));
 
+        jBtnRDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
         jBtnRDelete.setText("DELETE");
+        jBtnRDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnRDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnRDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 120, 30));
+        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 120, 30));
         jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1304, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,6 +455,12 @@ Webcam wc;
         jTxtMaiden.setText("");
         jTxtSN.setText("");
         jTxtDOB.setDate(null);
+        jTxtCit.setText("");
+        jTxtRel.setText("");
+        jTxtCivStat.setText("");
+        jTxtPOB.setText("");
+        jTxtContactNo.setText("");
+        jTxtHN.setText("");
     }
     
         int gender;
@@ -601,6 +616,7 @@ Webcam wc;
     private javax.swing.JButton jBtnRAdd;
     private javax.swing.JButton jBtnRDelete;
     private javax.swing.JButton jBttnCap;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
