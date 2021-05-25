@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package barangaypadolinasystem;
+package BarangayPadolina;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;

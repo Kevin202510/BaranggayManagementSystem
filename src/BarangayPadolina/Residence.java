@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package barangaypadolinasystem;
+package BarangayPadolina;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -20,6 +20,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +38,8 @@ Webcam wc;
 
     public Residence() {
         initComponents();
+        jBtnRDelete.setVisible(false);
+        jBtnEdit.setVisible(false);
         wc = Webcam.getDefault();
         showAllResidence();
 //        wc.setViewSize(WebcamResolution.VGA.getSize());Q#@$@$Q
@@ -68,7 +72,6 @@ Webcam wc;
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTxtDOB = new javax.swing.JTextField();
         jTxtPOB = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -82,6 +85,8 @@ Webcam wc;
         jtbl_residents = new javax.swing.JTable();
         jBtnRAdd = new javax.swing.JButton();
         jBtnEdit = new javax.swing.JButton();
+        jBtnRDelete = new javax.swing.JButton();
+        jTxtDOB = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -180,13 +185,6 @@ Webcam wc;
         jLabel7.setText("Civil Status:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
 
-        jTxtDOB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtDOBActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
-
         jTxtPOB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtPOBActionPerformed(evt);
@@ -249,6 +247,14 @@ Webcam wc;
             }
         });
         jScrollPane1.setViewportView(jtbl_residents);
+        if (jtbl_residents.getColumnModel().getColumnCount() > 0) {
+            jtbl_residents.getColumnModel().getColumn(0).setMinWidth(50);
+            jtbl_residents.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jtbl_residents.getColumnModel().getColumn(0).setMaxWidth(50);
+            jtbl_residents.getColumnModel().getColumn(1).setMinWidth(150);
+            jtbl_residents.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jtbl_residents.getColumnModel().getColumn(1).setMaxWidth(150);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
 
@@ -258,15 +264,24 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 120, 30));
 
-        jBtnEdit.setText("EDIT");
+        jBtnEdit.setText("UPDATE");
         jBtnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEditActionPerformed(evt);
             }
         });
         jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 120, 30));
+
+        jBtnRDelete.setText("DELETE");
+        jBtnRDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRDeleteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 120, 30));
+        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,10 +327,6 @@ Webcam wc;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtCitActionPerformed
 
-    private void jTxtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtDOBActionPerformed
-
     private void jTxtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtContactNoActionPerformed
@@ -340,7 +351,7 @@ Webcam wc;
     }//GEN-LAST:event_jBttnCapActionPerformed
 
     private void jBtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditActionPerformed
-        // TODO add your handling code here:
+        updateResident(selectedData);
     }//GEN-LAST:event_jBtnEditActionPerformed
 
     private void jBtnRAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRAddActionPerformed
@@ -352,7 +363,14 @@ Webcam wc;
     private void jtbl_residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_residentsMouseClicked
         selectedData = Integer.parseInt(jtbl_residents.getValueAt(jtbl_residents.getSelectedRow(),0).toString());
         fetchSelectedResident(selectedData);
+        jBtnRAdd.setVisible(false);
+        jBtnRDelete.setVisible(true);
+        jBtnEdit.setVisible(true);
     }//GEN-LAST:event_jtbl_residentsMouseClicked
+
+    private void jBtnRDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRDeleteActionPerformed
+        deleteResident(selectedData);
+    }//GEN-LAST:event_jBtnRDeleteActionPerformed
     
     SqlConnection getDBConn = new SqlConnection();
     Connection connection = getDBConn.DbconnectP();
@@ -416,7 +434,7 @@ Webcam wc;
             jTxtCit.setText(rs.getString("citizenship"));
             jTxtRel.setText(rs.getString("religion"));
             jTxtCivStat.setText(rs.getString("civil_stat"));
-//            rows[6] = rs.getString("DoB");
+            jTxtDOB.setDate(rs.getDate("DoB"));
            jTxtPOB.setText(rs.getString("PoB"));
            jTxtContactNo.setText(rs.getString("contact_num"));
            jTxtHN.setText(rs.getString("house_num"));
@@ -430,8 +448,17 @@ Webcam wc;
     }
     }
     
+    public void deleteFormContent(){
+        jTxtFN.setText("");
+        jTxtMaiden.setText("");
+        jTxtSN.setText("");
+        jTxtDOB.setDate(null);
+    }
+    
         int gender;
     private void addResident(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        String strDate = dateFormat.format(jTxtDOB.getDate());
     try {
         String addresident = "INSERT INTO `resident` (`first_name`, `middle_name`, `last_name`, `gender`, `DoB`, `PoB`, `civil_stat`, `citizenship`, `religion`,`contact_num`, `purok_id`, `house_num`, `profile`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st = connection.prepareStatement(addresident);
@@ -444,7 +471,7 @@ Webcam wc;
             gender=1;
         }
         st.setInt(4, gender);
-        st.setString(5, jTxtDOB.getText());
+        st.setString(5, strDate);
         st.setString(6, jTxtPOB.getText());
         st.setString(7, jTxtCivStat.getText());
         st.setString(8, jTxtCit.getText());
@@ -460,7 +487,10 @@ Webcam wc;
             DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
             mod.setRowCount(0);
             showAllResidence();
-            
+            deleteFormContent();
+            jBtnRDelete.setVisible(false);
+            jBtnEdit.setVisible(false);
+            jBtnRAdd.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,"Error");
         }
@@ -470,6 +500,8 @@ Webcam wc;
     }
     
     public void updateResident(int id){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        String strDate = dateFormat.format(jTxtDOB.getDate());
          try {
             String addresident = "UPDATE `resident` SET `first_name` = ?, `middle_name`= ?, `last_name`= ?, `gender`= ?, `DoB`= ?, `PoB`= ?, `civil_stat`= ?, `citizenship`= ?, `religion`= ?,`contact_num`= ?, `purok_id`= ?, `house_num`= ?, `profile`= ? WHERE id =?";
             PreparedStatement st = connection.prepareStatement(addresident);
@@ -482,7 +514,7 @@ Webcam wc;
                 gender=1;
             }
             st.setInt(4, gender);
-            st.setString(5, jTxtDOB.getText());
+            st.setString(5,strDate );
             st.setString(6, jTxtPOB.getText());
             st.setString(7, jTxtCivStat.getText());
             st.setString(8, jTxtCit.getText());
@@ -499,7 +531,35 @@ Webcam wc;
                 DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
                 mod.setRowCount(0);
                 showAllResidence();
-
+                deleteFormContent();
+                jBtnRDelete.setVisible(false);
+                jBtnEdit.setVisible(false);
+                jBtnRAdd.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this,"Error");
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void deleteResident(int id){
+         try {
+            String Deleteresident = "DELETE FROM resident WHERE id =?";
+            PreparedStatement st = connection.prepareStatement(Deleteresident);
+            st.setInt(1,id);
+            int i = st.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(this,"Successfully Deleted");
+    //            tanggalinAngLamanNgPosition();
+                DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
+                mod.setRowCount(0);
+                showAllResidence();
+                deleteFormContent();
+                jBtnRDelete.setVisible(false);
+                jBtnEdit.setVisible(false);
+                jBtnRAdd.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this,"Error");
             }
@@ -546,6 +606,7 @@ Webcam wc;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBtnEdit;
     private javax.swing.JButton jBtnRAdd;
+    private javax.swing.JButton jBtnRDelete;
     private javax.swing.JButton jBttnCap;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
@@ -566,7 +627,7 @@ Webcam wc;
     private javax.swing.JTextField jTxtCit;
     private javax.swing.JTextField jTxtCivStat;
     private javax.swing.JTextField jTxtContactNo;
-    private javax.swing.JTextField jTxtDOB;
+    private com.toedter.calendar.JDateChooser jTxtDOB;
     private javax.swing.JTextField jTxtFN;
     private javax.swing.JTextField jTxtHN;
     private javax.swing.JTextField jTxtMaiden;
