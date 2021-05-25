@@ -60,7 +60,7 @@ public class Blotters extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbl_blotter = new javax.swing.JTable();
-        jdate_of_hearing = new com.toedter.calendar.JDateChooser();
+        jdate_of_hearing = new org.netbeans.modules.form.InvalidComponent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -354,7 +354,7 @@ public class Blotters extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTxtFName;
     private javax.swing.JTextField jTxtMaidenName;
-    private com.toedter.calendar.JDateChooser jdate_of_hearing;
+    private org.netbeans.modules.form.InvalidComponent jdate_of_hearing;
     private javax.swing.JTable jtbl_blotter;
     private javax.swing.JTextArea jtxtarea_breport;
     // End of variables declaration//GEN-END:variables
