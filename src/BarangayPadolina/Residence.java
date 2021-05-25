@@ -6,15 +6,12 @@
 package BarangayPadolina;
 
 import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -56,7 +53,6 @@ Webcam wc;
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
         jTxtFN = new javax.swing.JTextField();
         jTxtMaiden = new javax.swing.JTextField();
         jTxtCit = new javax.swing.JTextField();
@@ -92,19 +88,8 @@ Webcam wc;
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton4.setBackground(new java.awt.Color(255, 0, 0));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton4.setText("X");
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 50, 40));
 
         jTxtFN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,15 +200,19 @@ Webcam wc;
         });
         jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
         jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
-        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 240, 120));
 
+        jlbl_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 160, 120));
+
+        jBttnCap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/compact-camera-16.png"))); // NOI18N
         jBttnCap.setText("TAKE");
+        jBttnCap.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBttnCap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBttnCapActionPerformed(evt);
             }
         });
-        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 110, 100, -1));
 
         jtbl_residents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,7 +247,9 @@ Webcam wc;
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
 
+        jBtnRAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
         jBtnRAdd.setText("ADD");
+        jBtnRAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnRAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnRAddActionPerformed(evt);
@@ -287,11 +278,11 @@ Webcam wc;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1304, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -608,7 +599,6 @@ Webcam wc;
     private javax.swing.JButton jBtnRAdd;
     private javax.swing.JButton jBtnRDelete;
     private javax.swing.JButton jBttnCap;
-    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;

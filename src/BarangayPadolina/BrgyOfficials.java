@@ -79,7 +79,6 @@ public class BrgyOfficials extends javax.swing.JFrame {
         jBttnCap = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
         jTxtUsername = new javax.swing.JTextField();
         jTxtPass = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -97,7 +96,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 50, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 50, 20));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel1.setText("First Name:");
@@ -332,7 +331,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
         jLabel23.setBackground(new java.awt.Color(153, 153, 153));
         jLabel23.setText("jLabel12");
         jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 130, 120));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 160, 130));
 
         jBttnCap.setText("Capture");
         jBttnCap.addActionListener(new java.awt.event.ActionListener() {
@@ -340,21 +339,21 @@ public class BrgyOfficials extends javax.swing.JFrame {
                 jBttnCapActionPerformed(evt);
             }
         });
-        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position"
+                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position", "Pass", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, true, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -364,26 +363,6 @@ public class BrgyOfficials extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel2.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentRemoved(java.awt.event.ContainerEvent evt) {
-                jPanel2ComponentRemoved(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1090, 50));
 
         jTxtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,10 +476,6 @@ public class BrgyOfficials extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBttnCapActionPerformed
 
-    private void jPanel2ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel2ComponentRemoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2ComponentRemoved
-
     private void jTxtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtUsernameActionPerformed
@@ -571,7 +546,6 @@ public class BrgyOfficials extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtCit1;
