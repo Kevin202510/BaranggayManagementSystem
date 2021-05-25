@@ -84,6 +84,7 @@ Webcam wc;
         jBtnRDelete = new javax.swing.JButton();
         jTxtDOB = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -288,6 +289,11 @@ Webcam wc;
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 20, 40, 30));
 
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("RESIDENCE");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 480, 60));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -449,7 +455,9 @@ Webcam wc;
            jTxtContactNo.setText(rs.getString("contact_num"));
            jTxtHN.setText(rs.getString("house_num"));
            String prof = rs.getString("profile");
-           ImageIcon imgs = new ImageIcon(getClass().getResource("/Images/Pictures/"+prof+".jpg"));
+//           JOptionPane.showMessageDialog(this,prof);
+           ImageIcon imgs = new ImageIcon(getClass().getResource("/Images/"+prof+""));
+//           JOptionPane.showMessageDialog(this,imgs);
            jlbl_profile.setIcon(imgs);
         }
         
@@ -630,6 +638,7 @@ Webcam wc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
