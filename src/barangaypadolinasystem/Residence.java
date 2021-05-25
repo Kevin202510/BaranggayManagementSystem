@@ -224,7 +224,15 @@ Webcam wc;
             new String [] {
                 "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
@@ -235,7 +243,7 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 120, 30));
 
         jBtnEdit.setText("EDIT");
         jBtnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +251,7 @@ Webcam wc;
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 590, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,7 +261,7 @@ Webcam wc;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         pack();

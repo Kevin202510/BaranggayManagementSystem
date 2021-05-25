@@ -352,7 +352,15 @@ public class BrgyOfficials extends javax.swing.JFrame {
             new String [] {
                 "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false, false, true, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
