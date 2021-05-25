@@ -7,13 +7,20 @@ package barangaypadolinasystem;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +37,7 @@ Webcam wc;
     public Residence() {
         initComponents();
         wc = Webcam.getDefault();
+        showAllResidence();
 //        wc.setViewSize(WebcamResolution.VGA.getSize());Q#@$@$Q
     }
 
@@ -71,7 +79,7 @@ Webcam wc;
         jlbl_profile = new javax.swing.JLabel();
         jBttnCap = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbl_residents = new javax.swing.JTable();
         jBtnRAdd = new javax.swing.JButton();
         jBtnEdit = new javax.swing.JButton();
 
@@ -106,10 +114,12 @@ Webcam wc;
         jPanel1.add(jTxtCit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
 
         jCheckBox1.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jCheckBox1);
         jCheckBox1.setText("Male");
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
 
         jCheckBox2.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jCheckBox2);
         jCheckBox2.setText("Female");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,26 +224,28 @@ Webcam wc;
         });
         jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbl_residents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID"
+                "ID", "Fullname", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jtbl_residents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbl_residentsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtbl_residents);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
 
@@ -329,9 +341,169 @@ Webcam wc;
     }//GEN-LAST:event_jBtnEditActionPerformed
 
     private void jBtnRAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRAddActionPerformed
-        // TODO add your handling code here:
+        addResident();
     }//GEN-LAST:event_jBtnRAddActionPerformed
+    
+    int selectedData;
+    
+    private void jtbl_residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_residentsMouseClicked
+        selectedData = Integer.parseInt(jtbl_residents.getValueAt(jtbl_residents.getSelectedRow(),0).toString());
+        fetchSelectedResident(selectedData);
+    }//GEN-LAST:event_jtbl_residentsMouseClicked
+    
+    SqlConnection getDBConn = new SqlConnection();
+    Connection connection = getDBConn.DbconnectP();
+    
+    private void showAllResidence(){
+    try {
+        DefaultTableModel model = (DefaultTableModel)jtbl_residents.getModel();
+        Object[] rows = new Object[15];
+        String LoginQuery = "SELECT * FROM resident";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        String gender;
+        
+        while(rs.next()){
+            String fullname = rs.getString("first_name") + " " + rs.getString("middle_name") + " " + rs.getString("last_name");
+            rows[0] = rs.getInt("id");
+            rows[1] = fullname;
+            int gen = Integer.parseInt(rs.getString("gender"));
+            if (gen==0) {
+                gender="Male";
+            }else{
+                gender="Female";
+            }
+            rows[2] = gender;
+            rows[3] = rs.getString("citizenship");
+            rows[4] = rs.getString("religion");
+            rows[5] = rs.getString("civil_stat");
+            rows[6] = rs.getString("DoB");
+            rows[7] = rs.getString("PoB");
+//            rows[8] = rs.getString("occupation");
+            rows[8] = rs.getString("contact_num");
+            rows[9] = rs.getString("house_num");
+            rows[10] = rs.getInt("purok_id");
+            model.addRow(rows);
+            
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+    
+    private void fetchSelectedResident(int ids){
+    try {
+        String LoginQuery = "SELECT * FROM resident where id = '"+ids+"'";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        String gender;
+        
+        while(rs.next()){
+            String fullname = rs.getString("first_name") + " " + rs.getString("middle_name") + " " + rs.getString("last_name");
+            jTxtFN.setText(rs.getString("first_name"));
+            jTxtMaiden.setText(rs.getString("middle_name"));
+            jTxtSN.setText(rs.getString("last_name"));
+            int gen = Integer.parseInt(rs.getString("gender"));
+            if (gen==0) {
+                jCheckBox1.setSelected(true);
+            }else{
+                jCheckBox2.setSelected(true);
+            }
+            jTxtCit.setText(rs.getString("citizenship"));
+            jTxtRel.setText(rs.getString("religion"));
+            jTxtCivStat.setText(rs.getString("civil_stat"));
+//            rows[6] = rs.getString("DoB");
+           jTxtPOB.setText(rs.getString("PoB"));
+           jTxtContactNo.setText(rs.getString("contact_num"));
+           jTxtHN.setText(rs.getString("house_num"));
+//         .setTxt(rs.getInt("purok_id"));
+//            model.addRow(rows);
+            
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+    
+        int gender;
+    private void addResident(){
+    try {
+        String addresident = "INSERT INTO `resident` (`first_name`, `middle_name`, `last_name`, `gender`, `DoB`, `PoB`, `civil_stat`, `citizenship`, `religion`,`contact_num`, `purok_id`, `house_num`, `profile`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement st = connection.prepareStatement(addresident);
+        st.setString(1, jTxtFN.getText());
+        st.setString(2, jTxtMaiden.getText());
+        st.setString(3, jTxtSN.getText());
+          if (jCheckBox1.isSelected()) {
+              gender=0;
+        }else if (jCheckBox2.isSelected()) {
+            gender=1;
+        }
+        st.setInt(4, gender);
+        st.setString(5, jTxtDOB.getText());
+        st.setString(6, jTxtPOB.getText());
+        st.setString(7, jTxtCivStat.getText());
+        st.setString(8, jTxtCit.getText());
+        st.setString(9, jTxtRel.getText());
+        st.setString(10, jTxtContactNo.getText());
+        st.setInt(11, 1);
+        st.setString(12, jTxtHN.getText());
+        st.setString(13, jTxtFN.getText()+".jpg");
+        int i = st.executeUpdate();
+        if (i > 0) {
+            JOptionPane.showMessageDialog(this,"Successfully Added");
+//            tanggalinAngLamanNgPosition();
+            DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
+            mod.setRowCount(0);
+            showAllResidence();
+            
+        } else {
+            JOptionPane.showMessageDialog(this,"Error");
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+    
+    public void updateResident(int id){
+         try {
+            String addresident = "UPDATE `resident` SET `first_name` = ?, `middle_name`= ?, `last_name`= ?, `gender`= ?, `DoB`= ?, `PoB`= ?, `civil_stat`= ?, `citizenship`= ?, `religion`= ?,`contact_num`= ?, `purok_id`= ?, `house_num`= ?, `profile`= ? WHERE id =?";
+            PreparedStatement st = connection.prepareStatement(addresident);
+            st.setString(1, jTxtFN.getText());
+            st.setString(2, jTxtMaiden.getText());
+            st.setString(3, jTxtSN.getText());
+              if (jCheckBox1.isSelected()) {
+                  gender=0;
+            }else if (jCheckBox2.isSelected()) {
+                gender=1;
+            }
+            st.setInt(4, gender);
+            st.setString(5, jTxtDOB.getText());
+            st.setString(6, jTxtPOB.getText());
+            st.setString(7, jTxtCivStat.getText());
+            st.setString(8, jTxtCit.getText());
+            st.setString(9, jTxtRel.getText());
+            st.setString(10, jTxtContactNo.getText());
+            st.setInt(11, 1);
+            st.setString(12, jTxtHN.getText());
+            st.setString(13, jTxtFN.getText()+".jpg");
+            st.setInt(14,id);
+            int i = st.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(this,"Successfully Added");
+    //            tanggalinAngLamanNgPosition();
+                DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
+                mod.setRowCount(0);
+                showAllResidence();
 
+            } else {
+                JOptionPane.showMessageDialog(this,"Error");
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -388,7 +560,6 @@ Webcam wc;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtCit;
     private javax.swing.JTextField jTxtCivStat;
     private javax.swing.JTextField jTxtContactNo;
@@ -400,6 +571,7 @@ Webcam wc;
     private javax.swing.JTextField jTxtRel;
     private javax.swing.JTextField jTxtSN;
     private javax.swing.JLabel jlbl_profile;
+    private javax.swing.JTable jtbl_residents;
     // End of variables declaration//GEN-END:variables
 
      Image img;
