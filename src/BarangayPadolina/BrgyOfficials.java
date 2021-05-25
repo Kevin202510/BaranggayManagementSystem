@@ -27,6 +27,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -133,10 +134,12 @@ public class BrgyOfficials extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
 
         jcbboy.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jcbboy);
         jcbboy.setText("Male");
         jPanel1.add(jcbboy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
 
         jcbgirl.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jcbgirl);
         jcbgirl.setText("Female");
         jcbgirl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,10 +351,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position", "Pass", "Username"
@@ -367,7 +367,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 940, -1));
 
         jTxtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,6 +551,7 @@ public class BrgyOfficials extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBttnCap;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

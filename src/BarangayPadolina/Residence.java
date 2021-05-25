@@ -256,7 +256,7 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 590, 120, 30));
 
         jBtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnEdit.setText("UPDATE");
@@ -266,7 +266,7 @@ Webcam wc;
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 590, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 120, 30));
 
         jBtnRDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
         jBtnRDelete.setText("DELETE");
@@ -276,24 +276,27 @@ Webcam wc;
                 jBtnRDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 120, 30));
+        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, 120, 30));
         jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 20, 40, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1303, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
         );
 
         pack();
@@ -373,6 +376,11 @@ Webcam wc;
     private void jBtnRDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRDeleteActionPerformed
         deleteResident(selectedData);
     }//GEN-LAST:event_jBtnRDeleteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        new BarangayDashboard().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     SqlConnection getDBConn = new SqlConnection();
     Connection connection = getDBConn.DbconnectP();
