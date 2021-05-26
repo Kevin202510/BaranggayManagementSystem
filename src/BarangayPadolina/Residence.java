@@ -86,6 +86,8 @@ Webcam wc;
         jTxtDOB = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jTxtPurok = new javax.swing.JTextField();
+        jLblPurok = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -263,7 +265,7 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 590, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 120, 30));
 
         jBtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnEdit.setText("UPDATE");
@@ -273,7 +275,7 @@ Webcam wc;
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 120, 30));
 
         jBtnRDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
         jBtnRDelete.setText("DELETE");
@@ -283,7 +285,7 @@ Webcam wc;
                 jBtnRDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, 120, 30));
+        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 120, 30));
         jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
@@ -299,6 +301,11 @@ Webcam wc;
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("RESIDENCE");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 480, 60));
+        jPanel1.add(jTxtPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, 160, 30));
+
+        jLblPurok.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblPurok.setText("Purok:");
+        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,7 +315,7 @@ Webcam wc;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
         );
 
         pack();
@@ -665,6 +672,7 @@ Webcam wc;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblPurok;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtCit;
@@ -675,6 +683,7 @@ Webcam wc;
     private javax.swing.JTextField jTxtHN;
     private javax.swing.JTextField jTxtMaiden;
     private javax.swing.JTextField jTxtPOB;
+    private javax.swing.JTextField jTxtPurok;
     private javax.swing.JTextField jTxtRel;
     private javax.swing.JTextField jTxtSN;
     private javax.swing.JLabel jlbl_profile;

@@ -1,21 +1,20 @@
-package BarangayPadolina;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package BarangayPadolina;
 
 /**
  *
  * @author Aznable
  */
-public class BrgyClearancesss extends javax.swing.JFrame {
+public class Brgy_Indigency extends javax.swing.JPanel {
 
     /**
-     * Creates new form Permits
+     * Creates new form Brgy_Indigency
      */
-    public BrgyClearancesss() {
+    public Brgy_Indigency() {
         initComponents();
     }
 
@@ -28,7 +27,6 @@ public class BrgyClearancesss extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPnlContent1 = new javax.swing.JPanel();
         jPnlTitle1 = new javax.swing.JPanel();
         jLblIcon1 = new javax.swing.JLabel();
         jLblIcon2 = new javax.swing.JLabel();
@@ -50,35 +48,25 @@ public class BrgyClearancesss extends javax.swing.JFrame {
         jLblSecretary0 = new javax.swing.JLabel();
         jLablTreasures0 = new javax.swing.JLabel();
         jLblOffice1 = new javax.swing.JLabel();
-        jLblPangalan0 = new javax.swing.JLabel();
-        jLblPangalan1 = new javax.swing.JLabel();
-        jLblBirthday1 = new javax.swing.JLabel();
-        jLblPangalanatPirma0 = new javax.swing.JLabel();
+        jLblBorder = new javax.swing.JLabel();
         jLblTitleClearance0 = new javax.swing.JLabel();
-        jLblFillup0 = new javax.swing.JLabel();
-        jLblFillup1 = new javax.swing.JLabel();
-        jLblPaalala = new javax.swing.JLabel();
-        jLblPirmaAtPangalan0 = new javax.swing.JLabel();
+        jLblDate = new javax.swing.JLabel();
+        jLblNilalaman0 = new javax.swing.JLabel();
+        jLblNilalaman1 = new javax.swing.JLabel();
         jLblCaptainPirma = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLblwatemark1 = new javax.swing.JLabel();
+        jLblPaalala = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPnlContent1.setPreferredSize(new java.awt.Dimension(600, 700));
-        jPnlContent1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(600, 700));
 
         jPnlTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (2).png"))); // NOI18N
         jLblIcon1.setText("asdasd");
-        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 100, 106));
+        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 106));
 
         jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
         jLblIcon2.setText("jLabel1");
-        jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 100, 106));
+        jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 100, 100));
 
         jLblRepublic1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLblRepublic1.setText("Republic of the Philippines");
@@ -99,8 +87,6 @@ public class BrgyClearancesss extends javax.swing.JFrame {
         jLblOffice.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLblOffice.setText("OFFICE OF THE BARANGAY CHAIRMAN");
         jPnlTitle1.add(jLblOffice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 350, 30));
-
-        jPnlContent1.add(jPnlTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 120));
 
         jPnlOfficials1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPnlOfficials1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,108 +139,100 @@ public class BrgyClearancesss extends javax.swing.JFrame {
         jLblOffice1.setText("<html>BARANGAY OFFICIALS <br><center>2018-2022</br></center></html>");
         jPnlOfficials1.add(jLblOffice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 9, -1, 34));
 
-        jPnlContent1.add(jPnlOfficials1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 210, 570));
-
-        jLblPangalan0.setText("Pangalan mo");
-        jPnlContent1.add(jLblPangalan0, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 150, -1));
-
-        jLblPangalan1.setText("Pangalan mo ulit");
-        jPnlContent1.add(jLblPangalan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 190, -1));
-
-        jLblBirthday1.setText("Birthday mo");
-        jPnlContent1.add(jLblBirthday1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 140, -1));
-
-        jLblPangalanatPirma0.setText("pangalan mo ulit at pirma sa taas");
-        jPnlContent1.add(jLblPangalanatPirma0, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 190, -1));
+        jLblBorder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
         jLblTitleClearance0.setFont(new java.awt.Font("Algerian", 1, 20)); // NOI18N
-        jLblTitleClearance0.setText("<html><center>BARANGAY CLEARANCE</center></html>");
-        jPnlContent1.add(jLblTitleClearance0, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 250, 50));
+        jLblTitleClearance0.setText("<html><center>CERTIFICATE OF INDIGENCY</center></html>");
 
-        jLblFillup0.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jLblFillup0.setText("<HTML>  TO WHOM IT MY CONCERN: <p> <BR><BR> This is to certify Mr/Ms:____________________, Born On,___________________,Single/Marries/Widow(er), And whose signature appears below, is a bonafide resident of Barangay Padolina, General Tinio, Nueva Ecija and is known to me to be a person of good moral character and reputation in this communinty...</p></html>");
-        jPnlContent1.add(jLblFillup0, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 460, 220));
+        jLblDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLblFillup1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jLblFillup1.setText("<html><p>This Certification is issued upon the request of Mr/Ms:_______________________, For whatever legal purpose it may serve best.</p></html>");
-        jPnlContent1.add(jLblFillup1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 470, 100));
+        jLblNilalaman0.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jLblNilalaman0.setText("<html>  TO WHOM IT MY CONCERN: <p> <br><br> This is to certify Mr/Ms:____________________, ___________________,y/o, Single/Married/Widow(er), And a bonafide resident of Barangay Padolina, General Tinio, Nueva Ecija and is an indigent member of this community. He/She belongs to low income family...</p></html>");
 
-        jLblPaalala.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLblPaalala.setText("<html><p style=\"color:red\"> This clearance is valid for 6 Months from date of issue and it's not valid without Dry Seal. </p> </html>");
-        jPnlContent1.add(jLblPaalala, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 650, 260, 50));
-
-        jLblPirmaAtPangalan0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLblPirmaAtPangalan0.setText("<html><br>____________________________</br> </br>Signature Over Printed Name.</html>");
-        jPnlContent1.add(jLblPirmaAtPangalan0, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 190, 80));
+        jLblNilalaman1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jLblNilalaman1.setText("<html><p>This Certification is issued upon the request of Mr/Ms:_______________________, For whatever legal purpose it may serve best.</p></html>");
 
         jLblCaptainPirma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLblCaptainPirma.setText("<html> <br><h3> Virgilio B. Domingo.</h3><center></br>Barangay Chairman</center></html>");
-        jPnlContent1.add(jLblCaptainPirma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 150, 80));
+        jLblCaptainPirma.setText("<html><font size=\"+1\">Virgilio B. Domingo</font><br><center>Barangay Chairman</center></htm>");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("<html>_____________,2021</html>");
-        jPnlContent1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 160, 40));
+        jLblPaalala.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLblPaalala.setText("<html><p style=\"color:red\"> This clearance is valid for 6 Months from date of issue and it's not valid without Dry Seal... </p> </html>");
 
-        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        jPnlContent1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 640, -1));
-        jPnlContent1.add(jLblwatemark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 220, 220));
-
-        getContentPane().add(jPnlContent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 740));
-
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPnlTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPnlOfficials1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(jLblTitleClearance0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(296, 296, 296)
+                                        .addComponent(jLblCaptainPirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLblNilalaman1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblPaalala, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLblNilalaman0, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap())
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36))))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLblBorder, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPnlTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jLblBorder)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jPnlOfficials1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblTitleClearance0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLblNilalaman0, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblNilalaman1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLblCaptainPirma, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblPaalala, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BrgyClearancesss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BrgyClearancesss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BrgyClearancesss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BrgyClearancesss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BrgyClearancesss().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLablTreasures0;
-    private javax.swing.JLabel jLblBirthday1;
+    private javax.swing.JLabel jLblBorder;
     private javax.swing.JLabel jLblCaptainPirma;
     private javax.swing.JLabel jLblChairman1;
-    private javax.swing.JLabel jLblFillup0;
-    private javax.swing.JLabel jLblFillup1;
+    private javax.swing.JLabel jLblDate;
     private javax.swing.JLabel jLblIcon1;
     private javax.swing.JLabel jLblIcon2;
     private javax.swing.JLabel jLblKagawad0;
@@ -265,21 +243,17 @@ public class BrgyClearancesss extends javax.swing.JFrame {
     private javax.swing.JLabel jLblKagawad5;
     private javax.swing.JLabel jLblKagawad6;
     private javax.swing.JLabel jLblMunicipal1;
+    private javax.swing.JLabel jLblNilalaman0;
+    private javax.swing.JLabel jLblNilalaman1;
     private javax.swing.JLabel jLblOffice;
     private javax.swing.JLabel jLblOffice1;
     private javax.swing.JLabel jLblPaalala;
     private javax.swing.JLabel jLblPadolinaTitle1;
-    private javax.swing.JLabel jLblPangalan0;
-    private javax.swing.JLabel jLblPangalan1;
-    private javax.swing.JLabel jLblPangalanatPirma0;
-    private javax.swing.JLabel jLblPirmaAtPangalan0;
     private javax.swing.JLabel jLblProvince1;
     private javax.swing.JLabel jLblRepublic1;
     private javax.swing.JLabel jLblSKchairwoman0;
     private javax.swing.JLabel jLblSecretary0;
     private javax.swing.JLabel jLblTitleClearance0;
-    private javax.swing.JLabel jLblwatemark1;
-    private javax.swing.JPanel jPnlContent1;
     private javax.swing.JPanel jPnlOfficials1;
     private javax.swing.JPanel jPnlTitle1;
     // End of variables declaration//GEN-END:variables
