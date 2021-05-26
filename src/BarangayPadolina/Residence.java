@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -98,6 +99,11 @@ Webcam wc;
         jTxtFN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtFNActionPerformed(evt);
+            }
+        });
+        jTxtFN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtFNKeyTyped(evt);
             }
         });
         jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
@@ -394,6 +400,18 @@ Webcam wc;
         this.dispose();
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTxtFNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtFNKeyTyped
+        char c = evt.getKeyChar();
+          if (!((c >= 'A') && (c <= 'Z') || (c >= 'a') && (c <= 'z') ||
+             (c == KeyEvent.VK_PERIOD) ||
+             (c == KeyEvent.VK_BACK_SPACE) ||
+             (c == KeyEvent.VK_SPACE) ||
+             (c == KeyEvent.VK_DELETE))) {
+               getToolkit().beep();
+             evt.consume();
+          }
+    }//GEN-LAST:event_jTxtFNKeyTyped
     
     SqlConnection getDBConn = new SqlConnection();
     Connection connection = getDBConn.DbconnectP();
