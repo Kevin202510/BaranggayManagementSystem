@@ -75,18 +75,20 @@ public class Officials extends javax.swing.JFrame {
         jTxtContactNo1 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jTxtHN1 = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
+        jLblcam = new javax.swing.JLabel();
         jBttnCap = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblOfficial = new javax.swing.JTable();
         jTxtUsername = new javax.swing.JTextField();
         jTxtPass = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtnAdd = new javax.swing.JButton();
+        jBtnUpdate = new javax.swing.JButton();
+        jBtnDelete = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jTxtPurok = new javax.swing.JTextField();
+        jLblPurok = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +109,12 @@ public class Officials extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel2.setText("Maiden Name:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
+
+        jTxtMaidenName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtMaidenNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -325,10 +333,9 @@ public class Officials extends javax.swing.JFrame {
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
         jPanel1.add(jTxtHN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
 
-        jLabel23.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel23.setText("jLabel12");
-        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 130));
+        jLblcam.setBackground(new java.awt.Color(153, 153, 153));
+        jLblcam.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(jLblcam, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 130));
 
         jBttnCap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/compact-camera-16.png"))); // NOI18N
         jBttnCap.setText("Capture");
@@ -340,7 +347,7 @@ public class Officials extends javax.swing.JFrame {
         });
         jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblOfficial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -356,7 +363,7 @@ public class Officials extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblOfficial);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 920, -1));
 
@@ -376,27 +383,30 @@ public class Officials extends javax.swing.JFrame {
         jLabel25.setText("Password:");
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 633, -1, 30));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
-        jButton1.setText("ADD");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, 80, -1));
+        jBtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
+        jBtnAdd.setText("ADD");
+        jBtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 730, 80, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
-        jButton2.setText("UPDATE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
+        jBtnUpdate.setText("UPDATE");
+        jBtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBtnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, -1, -1));
+        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 730, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
-        jButton3.setText("DELETE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBtnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
+        jBtnDelete.setText("DELETE");
+        jBtnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBtnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 670, -1, -1));
+        jPanel1.add(jBtnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 730, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -406,6 +416,11 @@ public class Officials extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 40, 30));
+        jPanel1.add(jTxtPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 670, 160, 30));
+
+        jLblPurok.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblPurok.setText("Purok:");
+        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 40, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -415,7 +430,7 @@ public class Officials extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
         );
 
         pack();
@@ -502,18 +517,22 @@ public class Officials extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtUsernameActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBtnUpdateActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTxtMaidenNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMaidenNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtMaidenNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -553,10 +572,10 @@ public class Officials extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBtnAdd;
+    private javax.swing.JButton jBtnDelete;
+    private javax.swing.JButton jBtnUpdate;
     private javax.swing.JButton jBttnCap;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
@@ -575,7 +594,6 @@ public class Officials extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
@@ -585,9 +603,11 @@ public class Officials extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblPurok;
+    private javax.swing.JLabel jLblcam;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblOfficial;
     private javax.swing.JTextField jTxtCit1;
     private javax.swing.JTextField jTxtCits;
     private javax.swing.JTextField jTxtCivStat1;
@@ -606,6 +626,7 @@ public class Officials extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtPOB1;
     private javax.swing.JTextField jTxtPOBirth;
     private javax.swing.JTextField jTxtPass;
+    private javax.swing.JTextField jTxtPurok;
     private javax.swing.JTextField jTxtRel1;
     private javax.swing.JTextField jTxtRelig;
     private javax.swing.JTextField jTxtSN1;

@@ -132,9 +132,9 @@ public class Puroks extends javax.swing.JFrame {
         jtbl_puroks = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jtxt_purokdescription = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtnDel = new javax.swing.JButton();
+        jBtnAdd = new javax.swing.JButton();
+        jBtnUpdate = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
 
@@ -173,29 +173,32 @@ public class Puroks extends javax.swing.JFrame {
         jtxt_purokdescription.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jPanel1.add(jtxt_purokdescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 350, 40));
 
-        jButton1.setText("DELETE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnDel.setText("DELETE");
+        jBtnDel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBtnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtnDelActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 110, 50));
+        jPanel1.add(jBtnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 110, 50));
 
-        jButton2.setText("ADD");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnAdd.setText("ADD");
+        jBtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBtnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 293, 110, 50));
+        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 293, 110, 50));
 
-        jButton3.setText("UPDATE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBtnUpdate.setText("UPDATE");
+        jBtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBtnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 110, 50));
+        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 110, 50));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 153));
 
@@ -241,22 +244,22 @@ public class Puroks extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
         addPuroks();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBtnAddActionPerformed
     int id;
     private void jtbl_puroksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_puroksMouseClicked
         id = Integer.parseInt(jtbl_puroks.getValueAt(jtbl_puroks.getSelectedRow(),0).toString());
         jtxt_purokdescription.setText(jtbl_puroks.getValueAt(jtbl_puroks.getSelectedRow(),1).toString());
     }//GEN-LAST:event_jtbl_puroksMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
         updatePuroks(id);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBtnUpdateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDelActionPerformed
         deletePuroks(id);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnDelActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
@@ -299,9 +302,9 @@ public class Puroks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBtnAdd;
+    private javax.swing.JButton jBtnDel;
+    private javax.swing.JButton jBtnUpdate;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -164,6 +164,7 @@ public class Positions extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTblPosition);
 
         jBttnAdd.setText("ADD");
+        jBttnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBttnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBttnAddActionPerformed(evt);
@@ -171,6 +172,7 @@ public class Positions extends javax.swing.JFrame {
         });
 
         jBttnUpdate.setText("UPDATE");
+        jBttnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBttnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBttnUpdateActionPerformed(evt);
@@ -184,6 +186,7 @@ public class Positions extends javax.swing.JFrame {
         });
 
         jBttnDelete.setText("DELETE");
+        jBttnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBttnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBttnDeleteActionPerformed(evt);
