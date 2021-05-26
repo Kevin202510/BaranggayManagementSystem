@@ -33,13 +33,14 @@ public class BarangayDashboard extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jBttnOfficial = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jBttnPosition = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -73,6 +74,7 @@ public class BarangayDashboard extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/conference-32.png"))); // NOI18N
         jButton2.setText("Resident");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/police-2-32.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -100,18 +102,18 @@ public class BarangayDashboard extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 240, 80));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 240, 80));
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/police-2-32.png"))); // NOI18N
-        jButton5.setText("Barangay Officials");
-        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jBttnOfficial.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jBttnOfficial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/police-2-32.png"))); // NOI18N
+        jBttnOfficial.setText("Officials");
+        jBttnOfficial.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBttnOfficial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jBttnOfficialActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 270, 80));
+        jPanel1.add(jBttnOfficial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 240, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -173,6 +175,17 @@ public class BarangayDashboard extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, -1));
 
+        jBttnPosition.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jBttnPosition.setIcon(new javax.swing.ImageIcon("C:\\Users\\Padolina Family\\Downloads\\imageedit_6_7047079429.png")); // NOI18N
+        jBttnPosition.setText("Position");
+        jBttnPosition.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBttnPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBttnPositionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBttnPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 310, 240, 80));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,10 +218,10 @@ public class BarangayDashboard extends javax.swing.JFrame {
         new Blotters().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jBttnOfficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnOfficialActionPerformed
         this.dispose();
-        new BrgyOfficials().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+        new Officials().setVisible(true);
+    }//GEN-LAST:event_jBttnOfficialActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
@@ -217,8 +230,13 @@ public class BarangayDashboard extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.dispose();
-        new LoginOfficials().setVisible(true);
+        new LogIn().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jBttnPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnPositionActionPerformed
+      this.dispose();
+      new Positions().setVisible(true);
+    }//GEN-LAST:event_jBttnPositionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,11 +274,12 @@ public class BarangayDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBttnOfficial;
+    private javax.swing.JButton jBttnPosition;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

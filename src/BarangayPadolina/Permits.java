@@ -106,7 +106,7 @@ public class Permits extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 50));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel2.setText("Name:");
+        jLabel2.setText("FullName:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 70, 30));
 
         jTxtFN.addActionListener(new java.awt.event.ActionListener() {

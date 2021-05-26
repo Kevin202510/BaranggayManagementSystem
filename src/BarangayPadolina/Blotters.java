@@ -228,7 +228,7 @@ public class Blotters extends javax.swing.JFrame {
         }
         
     } catch (SQLException ex) {
-        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Blotters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     }
     
@@ -239,7 +239,7 @@ public class Blotters extends javax.swing.JFrame {
         return strDate;
      }
     
-     private void addResident(){
+     private void addBlotter(){
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
     String strDate = dateFormat.format(jdate_of_hearing.getDate());
     try {
@@ -261,12 +261,12 @@ public class Blotters extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Error");
         }
     } catch (SQLException ex) {
-        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Blotters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     }
      
     private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_jBtnUpdateActionPerformed
 
     private void jTxtFNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNameActionPerformed
@@ -274,7 +274,7 @@ public class Blotters extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtFNameActionPerformed
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
-       addResident();
+       addBlotter();
     }//GEN-LAST:event_jBtnAddActionPerformed
     int id;
     private void jtbl_blotterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_blotterMouseClicked
