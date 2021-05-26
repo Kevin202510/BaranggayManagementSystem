@@ -5,6 +5,12 @@
  */
 package BarangayPadolina;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +24,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +40,7 @@ public class Blotters extends javax.swing.JFrame {
         initComponents();
         showBlotters();
         jTxtMaidenName.setText(getDateNow());
+//        jpnl_blotterrep.setVisible(false);
     }
 
     /**
@@ -61,6 +69,7 @@ public class Blotters extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbl_blotter = new javax.swing.JTable();
         jdate_of_hearing = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +195,14 @@ public class Blotters extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 980, 270));
         jPanel1.add(jdate_of_hearing, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 180, 30));
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,7 +245,7 @@ public class Blotters extends javax.swing.JFrame {
         }
         
     } catch (SQLException ex) {
-        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Blotters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     }
     
@@ -239,11 +256,11 @@ public class Blotters extends javax.swing.JFrame {
         return strDate;
      }
     
-     private void addResident(){
+     private void addBlotter(){
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
     String strDate = dateFormat.format(jdate_of_hearing.getDate());
     try {
-        String addresident = "INSERT INTO `blotter` (`blotter_report`, `complainant`, `date_of_report`, `date_of_hearing`) VALUES (?,?,?,?);";
+        String addresident = "INSERT INTO `blotter` (`blotter_report`, `complainant`, `date_of_report`, `date_of_hearing`) VALUES (?,?,?,?)";
         PreparedStatement st = connection.prepareStatement(addresident);
         st.setString(1, jtxtarea_breport.getText());
         st.setString(2, jTxtFName.getText());
@@ -256,17 +273,44 @@ public class Blotters extends javax.swing.JFrame {
             DefaultTableModel mod = (DefaultTableModel)jtbl_blotter.getModel();
             mod.setRowCount(0);
             showBlotters();
+//            printReceipt(jpnl_blotterrep);
+        } else {
+            JOptionPane.showMessageDialog(this,"Error");
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Blotters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+     
+     private void updateBlotter(int ids){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+    String strDate = dateFormat.format(jdate_of_hearing.getDate());
+    try {
+        String addresident = "UPDATE `blotter` SET `blotter_report`=?, `complainant`=?, `date_of_report`=?, `date_of_hearing`=? where id=?";
+        PreparedStatement st = connection.prepareStatement(addresident);
+        st.setString(1, jtxtarea_breport.getText());
+        st.setString(2, jTxtFName.getText());
+        st.setString(3, jTxtMaidenName.getText());
+        st.setString(4, strDate);
+        st.setInt(5, ids);
+        int i = st.executeUpdate();
+        if (i > 0) {
+            JOptionPane.showMessageDialog(this,"Successfully updated");
+            clearFilled();
+            DefaultTableModel mod = (DefaultTableModel)jtbl_blotter.getModel();
+            mod.setRowCount(0);
+            showBlotters();
             
         } else {
             JOptionPane.showMessageDialog(this,"Error");
         }
     } catch (SQLException ex) {
-        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        java.util.logging.Logger.getLogger(Blotters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     }
      
     private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
-        // TODO add your handling code here:
+        updateBlotter(id);
     }//GEN-LAST:event_jBtnUpdateActionPerformed
 
     private void jTxtFNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNameActionPerformed
@@ -274,7 +318,7 @@ public class Blotters extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtFNameActionPerformed
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
-       addResident();
+       addBlotter();
     }//GEN-LAST:event_jBtnAddActionPerformed
     int id;
     private void jtbl_blotterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_blotterMouseClicked
@@ -296,6 +340,62 @@ public class Blotters extends javax.swing.JFrame {
         new BarangayDashboard().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       printReceipt(new BlotterReps());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void printReceipt(JPanel panel){
+        JOptionPane.showMessageDialog(null,panel,"Print", JOptionPane.PLAIN_MESSAGE);
+        // Create PrinterJob Here
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        // Set Printer Job Name
+        printerJob.setJobName("Print Record");
+        // Set Printable
+        printerJob.setPrintable(new Printable() {
+            @Override
+            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+                // Check If No Printable Content
+                if(pageIndex > 0){
+                    return Printable.NO_SUCH_PAGE;
+                }
+                
+                // Make 2D Graphics to map content
+                Graphics2D graphics2D = (Graphics2D)graphics;
+                // Set Graphics Translations
+                // A Little Correction here Multiplication was not working so I replaced with addition
+                graphics2D.translate(pageFormat.getImageableX()+10, pageFormat.getImageableY()+10);
+                // This is a page scale. Default should be 0.3 I am using 0.5
+                graphics2D.scale(0.5, 0.5);
+                
+                // Now paint panel as graphics2D
+                panel.paint(graphics2D);
+                
+                // return if page exists
+                return Printable.PAGE_EXISTS;
+            }
+        });
+        // Store printerDialog as boolean
+//        boolean returningResult = printerJob.printDialog();
+        // check if dilog is showing
+//        
+        boolean returningResult;
+            
+            do{
+                returningResult = printerJob.printDialog();
+                if (!returningResult) {
+                    JOptionPane.showMessageDialog(null,"You Cannot Cancel Printing Receipt");
+                }
+            }while(returningResult==false);
+            // Use try catch exeption for failure
+            if(returningResult){
+            try{
+                printerJob.print();
+            }catch (PrinterException printerException){
+                JOptionPane.showMessageDialog(null, "Print Error: " + printerException.getMessage());
+            }
+        }
+}
+    
     private void clearFilled(){
         jtxtarea_breport.setText("");
         jTxtFName.setText("");
@@ -341,6 +441,7 @@ public class Blotters extends javax.swing.JFrame {
     private javax.swing.JButton jBtnAdd;
     private javax.swing.JButton jBtnUpdate;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
