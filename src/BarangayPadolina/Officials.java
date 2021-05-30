@@ -5,6 +5,19 @@
  */
 package BarangayPadolina;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 63926
@@ -16,6 +29,8 @@ public class Officials extends javax.swing.JFrame {
      */
     public Officials() {
         initComponents();
+        popPosition();
+        showAllOfficials();
     }
 
     /**
@@ -29,113 +44,57 @@ public class Officials extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTxtFName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTxtMaidenName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTxtLastName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jcbboy = new javax.swing.JCheckBox();
         jcbgirl = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        jTxtCits = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTxtRelig = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTxtCivStatus = new javax.swing.JTextField();
-        jTxtDOBirth = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTxtPOBirth = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTxtContactNum = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTxtHNumber = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        jLblFname = new javax.swing.JLabel();
         jTxtFN1 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTxtMaiden1 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        jLblMaiden = new javax.swing.JLabel();
+        jTxtMaiden = new javax.swing.JTextField();
+        jLblLname = new javax.swing.JLabel();
         jTxtSN1 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jLabel16 = new javax.swing.JLabel();
+        jLblGender = new javax.swing.JLabel();
+        jLblCitizen = new javax.swing.JLabel();
         jTxtCit1 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        jLblReligion = new javax.swing.JLabel();
         jTxtRel1 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jTxtCivStat1 = new javax.swing.JTextField();
-        jTxtDOB1 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        jLblCivil = new javax.swing.JLabel();
+        jLblDob = new javax.swing.JLabel();
+        jLblPOB = new javax.swing.JLabel();
         jTxtPOB1 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
+        jLblHousenum = new javax.swing.JLabel();
         jTxtContactNo1 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
+        jLblHouseNum = new javax.swing.JLabel();
         jTxtHN1 = new javax.swing.JTextField();
         jLblcam = new javax.swing.JLabel();
-        jBttnCap = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTblOfficial = new javax.swing.JTable();
-        jTxtUsername = new javax.swing.JTextField();
-        jTxtPass = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        jTblVoters = new javax.swing.JTable();
         jBtnAdd = new javax.swing.JButton();
         jBtnUpdate = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTxtPurok = new javax.swing.JTextField();
+        jBttnExit = new javax.swing.JButton();
         jLblPurok = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTblofficials = new javax.swing.JTable();
+        jTxtFldSearch = new javax.swing.JTextField();
+        jBttnSearch = new javax.swing.JButton();
+        jTxtDOB = new com.toedter.calendar.JDateChooser();
+        jTxtPurok = new javax.swing.JTextField();
+        jTxtCivil = new javax.swing.JTextField();
+        jCmbPositionChoice = new javax.swing.JComboBox<>();
+        jLbPosition1l = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTxtFld_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(840, 700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel1.setText("First Name:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
-
-        jTxtFName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtFNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel2.setText("Maiden Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
-
-        jTxtMaidenName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtMaidenNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtMaidenName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel3.setText("Last Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
-
-        jTxtLastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtLastNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel4.setText("Gender:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
 
         jcbboy.setBackground(new java.awt.Color(102, 204, 255));
         buttonGroup1.add(jcbboy);
         jcbboy.setText("Male");
-        jPanel1.add(jcbboy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
+        jPanel1.add(jcbboy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, 30));
 
         jcbgirl.setBackground(new java.awt.Color(102, 204, 255));
         buttonGroup1.add(jcbgirl);
@@ -145,248 +104,134 @@ public class Officials extends javax.swing.JFrame {
                 jcbgirlActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbgirl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
+        jPanel1.add(jcbgirl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel5.setText("Citizenship:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
-
-        jTxtCits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCitsActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtCits, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel6.setText("Religion:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
-
-        jTxtRelig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtReligActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtRelig, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel7.setText("Civil Status:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
-
-        jTxtCivStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCivStatusActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtCivStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
-
-        jTxtDOBirth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtDOBirthActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtDOBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel8.setText("DOB:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel9.setText("POB:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
-
-        jTxtPOBirth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtPOBirthActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtPOBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel10.setText("Contact Number:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
-
-        jTxtContactNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtContactNumActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtContactNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
-
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel11.setText("House Number:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
-        jPanel1.add(jTxtHNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel12.setText("First Name:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
+        jLblFname.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblFname.setText("First Name:");
+        jPanel1.add(jLblFname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 70, 30));
 
         jTxtFN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtFN1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtFN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
+        jPanel1.add(jTxtFN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, 30));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel13.setText("Maiden Name:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
-        jPanel1.add(jTxtMaiden1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
+        jLblMaiden.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblMaiden.setText("Maiden Name:");
+        jPanel1.add(jLblMaiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 80, 30));
+        jPanel1.add(jTxtMaiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 160, 30));
 
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel14.setText("Last Name:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
+        jLblLname.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblLname.setText("Last Name:");
+        jPanel1.add(jLblLname, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 70, 30));
 
         jTxtSN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtSN1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtSN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
+        jPanel1.add(jTxtSN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 160, 30));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel15.setText("Gender:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
+        jLblGender.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblGender.setText("Gender:");
+        jPanel1.add(jLblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 50, 30));
 
-        jCheckBox3.setBackground(new java.awt.Color(102, 204, 255));
-        jCheckBox3.setText("Male");
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
-
-        jCheckBox4.setBackground(new java.awt.Color(102, 204, 255));
-        jCheckBox4.setText("Female");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
-
-        jLabel16.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel16.setText("Citizenship:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
+        jLblCitizen.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblCitizen.setText("Citizenship:");
+        jPanel1.add(jLblCitizen, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 70, 30));
 
         jTxtCit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtCit1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtCit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
+        jPanel1.add(jTxtCit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 160, 30));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel17.setText("Religion:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
+        jLblReligion.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblReligion.setText("Religion:");
+        jPanel1.add(jLblReligion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 50, 30));
 
         jTxtRel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtRel1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtRel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
+        jPanel1.add(jTxtRel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 160, 30));
 
-        jLabel18.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel18.setText("Civil Status:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
+        jLblCivil.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblCivil.setText("Civil Status:");
+        jPanel1.add(jLblCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 70, 30));
 
-        jTxtCivStat1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCivStat1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtCivStat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
+        jLblDob.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblDob.setText("DOB:");
+        jPanel1.add(jLblDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 30, 30));
 
-        jTxtDOB1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtDOB1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtDOB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
-
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel19.setText("DOB:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
-
-        jLabel20.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel20.setText("POB:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
+        jLblPOB.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblPOB.setText("POB:");
+        jPanel1.add(jLblPOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 30, 30));
 
         jTxtPOB1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtPOB1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtPOB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
+        jPanel1.add(jTxtPOB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 160, 30));
 
-        jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel21.setText("Contact Number:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
+        jLblHousenum.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblHousenum.setText("Contact Number:");
+        jPanel1.add(jLblHousenum, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 100, 30));
 
         jTxtContactNo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtContactNo1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtContactNo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
+        jPanel1.add(jTxtContactNo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 160, 30));
 
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel22.setText("House Number:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
-        jPanel1.add(jTxtHN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
+        jLblHouseNum.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLblHouseNum.setText("House Number:");
+        jPanel1.add(jLblHouseNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 90, 30));
+        jPanel1.add(jTxtHN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 160, 30));
 
         jLblcam.setBackground(new java.awt.Color(153, 153, 153));
         jLblcam.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.add(jLblcam, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 130));
 
-        jBttnCap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/compact-camera-16.png"))); // NOI18N
-        jBttnCap.setText("Capture");
-        jBttnCap.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBttnCap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBttnCapActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
-
-        jTblOfficial.setModel(new javax.swing.table.DefaultTableModel(
+        jTblVoters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID", "Position", "Pass", "Username"
+                "ID", "FName", "MName", "LName", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok Name", "Registered"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTblOfficial);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 920, -1));
-
-        jTxtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtUsernameActionPerformed(evt);
+        jTblVoters.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblVotersMouseClicked(evt);
             }
         });
-        jPanel1.add(jTxtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, 160, 30));
-        jPanel1.add(jTxtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 630, 160, 30));
+        jScrollPane1.setViewportView(jTblVoters);
 
-        jLabel24.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel24.setText("Username:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 80, 30));
-
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel25.setText("Password:");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 633, -1, 30));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 850, 100));
 
         jBtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
         jBtnAdd.setText("ADD");
         jBtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 730, 80, -1));
+        jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 70, -1));
 
         jBtnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnUpdate.setText("UPDATE");
@@ -396,7 +241,7 @@ public class Officials extends javax.swing.JFrame {
                 jBtnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 730, -1, -1));
+        jPanel1.add(jBtnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
 
         jBtnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
         jBtnDelete.setText("DELETE");
@@ -406,134 +251,439 @@ public class Officials extends javax.swing.JFrame {
                 jBtnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 730, -1, -1));
+        jPanel1.add(jBtnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 450, 70, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jBttnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
+        jBttnExit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBttnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jBttnExitActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 40, 30));
-        jPanel1.add(jTxtPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 670, 160, 30));
+        jPanel1.add(jBttnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 40, 30));
 
         jLblPurok.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLblPurok.setText("Purok:");
-        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 40, 30));
+        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 40, 30));
+
+        jTblofficials.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Position", "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblofficials.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblofficialsMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTblofficials);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 840, 130));
+
+        jTxtFldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFldSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 190, 30));
+
+        jBttnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBttnSearch.setText("Search");
+        jBttnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBttnSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBttnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 90, 30));
+        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 160, 30));
+
+        jTxtPurok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtPurokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 160, 30));
+
+        jTxtCivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCivilActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 160, 30));
+
+        jCmbPositionChoice.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jCmbPositionChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbPositionChoiceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCmbPositionChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 150, 30));
+
+        jLbPosition1l.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLbPosition1l.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLbPosition1l.setText("Position:");
+        jLbPosition1l.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLbPosition1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 60, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Officials");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 160, 40));
+
+        jTxtFld_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFld_idActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtFld_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtFNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNameActionPerformed
+    private void jTxtCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFNameActionPerformed
+    }//GEN-LAST:event_jTxtCivilActionPerformed
 
-    private void jTxtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtLastNameActionPerformed
+    private void jTxtPurokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPurokActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtLastNameActionPerformed
+    }//GEN-LAST:event_jTxtPurokActionPerformed
 
-    private void jcbgirlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbgirlActionPerformed
+    private void jBttnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbgirlActionPerformed
+        searchrs(jTxtFldSearch.getText());
+    }//GEN-LAST:event_jBttnSearchActionPerformed
 
-    private void jTxtCitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCitsActionPerformed
+    private void jTxtFldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFldSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCitsActionPerformed
+    }//GEN-LAST:event_jTxtFldSearchActionPerformed
 
-    private void jTxtReligActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtReligActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtReligActionPerformed
-
-    private void jTxtCivStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCivStatusActionPerformed
-
-    private void jTxtDOBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtDOBirthActionPerformed
-
-    private void jTxtPOBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtPOBirthActionPerformed
-
-    private void jTxtContactNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtContactNumActionPerformed
-
-    private void jTxtFN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFN1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtFN1ActionPerformed
-
-    private void jTxtSN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSN1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSN1ActionPerformed
-
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
-
-    private void jTxtCit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCit1ActionPerformed
-
-    private void jTxtRel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRel1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtRel1ActionPerformed
-
-    private void jTxtCivStat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStat1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCivStat1ActionPerformed
-
-    private void jTxtDOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDOB1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtDOB1ActionPerformed
-
-    private void jTxtPOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOB1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtPOB1ActionPerformed
-
-    private void jTxtContactNo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtContactNo1ActionPerformed
-
-    private void jBttnCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnCapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBttnCapActionPerformed
-
-    private void jTxtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtUsernameActionPerformed
-
-    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnUpdateActionPerformed
+    private void jBttnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttnExitActionPerformed
+        this.dispose();
+        new BarangayDashboard().setVisible(true);
+    }//GEN-LAST:event_jBttnExitActionPerformed
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnDeleteActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        new BarangayDashboard().setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTxtMaidenNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMaidenNameActionPerformed
+    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtMaidenNameActionPerformed
+    }//GEN-LAST:event_jBtnUpdateActionPerformed
 
+    private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
+
+        addOfficial();
+
+//        int taon  = 0;
+//      if(jTxtDOB.getDate() != null){
+//         taon =   petsanow.getYear() -   jTxtDOB.getDate().getYear();
+//         if(petsanow.getMonth() > jTxtDOB.getDate().getMonth() ){
+//                taon -=1;
+//            
+//            }
+//      }
+//        if (jlbl_profile.getIcon() == null || jTxtFN.getText().isBlank() || jTxtMaiden.getText().isBlank() || jTxtSN.getText().isBlank() || !(jChckMale.isSelected() || jChckFemale.isSelected()) || jTxtCit.getText().isBlank() || jTxtRel.getText().isBlank() || jTxtDOB.getDate() == null || jTxtPOB.getText().isBlank() || jTxtContactNo.getText().isBlank() || jTxtHN.getText().isBlank() || !(jRdYes.isSelected() || jRdNo.isSelected())){
+//               JOptionPane.showMessageDialog(this,"Please Fill up all information and check the picture "); 
+//        } else if(petsanow.getTime() < jTxtDOB.getDate().getTime() ){
+//               JOptionPane.showMessageDialog(this,"Not yet born!"); 
+//        }
+//        else if(taon <18 && jRdYes.isSelected()){
+//               JOptionPane.showMessageDialog(this,"Not Yet Qualified to Vote"); 
+//
+//  
+//        }else{
+//               //JOptionPane.showMessageDialog(this,"Add"); 
+//         addResident();
+//        }
+        
+    }//GEN-LAST:event_jBtnAddActionPerformed
+
+    private void jTblVotersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblVotersMouseClicked
+        int selectedData = Integer.parseInt(jTblVoters.getValueAt(jTblVoters.getSelectedRow(),0).toString());
+        fetchSelectedOfficials(selectedData);
+        jBtnAdd.setVisible(true);
+        jBtnDelete.setVisible(true);
+        jBtnUpdate.setVisible(true);
+    }//GEN-LAST:event_jTblVotersMouseClicked
+
+    private void jTxtContactNo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtContactNo1ActionPerformed
+
+    private void jTxtPOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtPOB1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtPOB1ActionPerformed
+
+    private void jTxtRel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtRel1ActionPerformed
+
+    private void jTxtCit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCit1ActionPerformed
+
+    private void jTxtSN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtSN1ActionPerformed
+
+    private void jTxtFN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFN1ActionPerformed
+
+    private void jcbgirlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbgirlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbgirlActionPerformed
+
+    private void jCmbPositionChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbPositionChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCmbPositionChoiceActionPerformed
+
+    private void jTxtFld_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFld_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFld_idActionPerformed
+
+    private void jTblofficialsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblofficialsMouseClicked
+        // TODO add your handling code here:
+        int selectedData = Integer.parseInt(jTblofficials.getValueAt(jTblofficials.getSelectedRow(),0).toString());
+        fetchSelectedOfficials(selectedData);
+    }//GEN-LAST:event_jTblofficialsMouseClicked
+     
+    SqlConnection getDBConn = new SqlConnection();
+    Connection connection = getDBConn.DbconnectP();
+   
+    void searchrs(String name) {
+        
+        DefaultTableModel model = (DefaultTableModel)jTblVoters.getModel();
+        
+        model.setRowCount(0);
+        Object[] rows = new Object[15];
+
+        try {
+          
+             String LoginQuery = "SELECT * FROM resident WHERE (first_name LIKE '%"+name+"%' OR last_name LIKE '%"+name+"%' ) AND IsVoter = 1 AND IsOfficials = 0";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+            
+            String gender;
+            while(rs.next()){            
+                rows[0] = rs.getInt("id");
+                rows[1] = rs.getString("first_name");
+                rows[2] = rs.getString("middle_name");
+                rows[3] = rs.getString("last_name");
+              int gen = Integer.parseInt(rs.getString("gender"));
+              if (gen==0) {
+                 gender="Male";
+              }else{
+                 gender="Female";
+              }
+                rows[4] = gender;
+                rows[5] = rs.getString("citizenship");
+                rows[6] = rs.getString("religion");
+                rows[7] = rs.getString("civil_stat");
+                rows[8] = rs.getString("DoB");
+                rows[9] = rs.getString("PoB");
+                rows[10] = rs.getString("contact_num");
+                rows[11] = rs.getString("house_num");
+                rows[12] = rs.getString("purok_name");
+                rows[13] = rs.getInt("IsVoter");
+                 model.addRow(rows);
+            }    
+ 
+        } catch (SQLException ex) {
+            Logger.getLogger(Officials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+      private void addOfficial(){
+      // DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+      //  String strDate = dateFormat.format(jTxtDOB.getDate());
+         try {
+            String addresident = "UPDATE `positions` SET `resident_id` = ? WHERE position_descrip = ?";
+            PreparedStatement st = connection.prepareStatement(addresident);
+            st.setInt(1, Integer.parseInt(jTxtFld_id.getText()));
+            st.setString(2, jCmbPositionChoice.getSelectedItem().toString());
+           
+       
+            //JOptionPane.showMessageDialog(this,"d2");
+            int i = st.executeUpdate();
+            if (i > 0) {
+                
+                String officialqry = "UPDATE `resident` SET `IsOfficials` = 1 WHERE id = ?";
+            PreparedStatement ost = connection.prepareStatement(officialqry);
+            ost.setInt(1, Integer.parseInt(jTxtFld_id.getText()));
+           
+           
+       
+            //JOptionPane.showMessageDialog(this,"d2");
+            int ii = ost.executeUpdate();
+                if (ii > 0) {
+                searchrs("");
+                JOptionPane.showMessageDialog(this,"Successfully Updated");
+    //            tanggalinAngLamanNgPosition();
+                DefaultTableModel mod = (DefaultTableModel)jTblofficials.getModel();
+                mod.setRowCount(0);
+                showAllOfficials();
+                
+                
+                //showAllResidence();
+               // deleteFormContent();
+                //jBtnRDelete.setVisible(false);
+                //jBtnEdit.setVisible(false);
+                //jBtnRAdd.setVisible(true);
+                
+                popPosition();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,"Error");
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }    
+    
+    void fetchSelectedOfficials(int ids){
+    try {
+        String LoginQuery = "SELECT * FROM resident where id = '"+ids+"'";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        String gender;
+        
+        while(rs.next()){
+            jTxtFld_id.setText(String.valueOf(rs.getInt("id")));
+            jTxtFN1.setText(rs.getString("first_name"));
+            jTxtMaiden.setText(rs.getString("middle_name"));
+            jTxtSN1.setText(rs.getString("last_name"));
+            int gen = Integer.parseInt(rs.getString("gender"));
+            if (gen==0) {
+                jcbboy.setSelected(true);
+            }else{
+                jcbgirl.setSelected(true);
+            }
+            jTxtCit1.setText(rs.getString("citizenship"));
+            jTxtRel1.setText(rs.getString("religion"));
+            jTxtDOB.setDate(rs.getDate("DoB"));
+            jTxtPOB1.setText(rs.getString("PoB"));
+            jTxtContactNo1.setText(rs.getString("contact_num"));
+            jTxtHN1.setText(rs.getString("house_num"));
+            jTxtCivil.setText(rs.getString("civil_stat"));
+            jTxtPurok.setText(rs.getString("purok_name"));
+           String prof = rs.getString("profile");
+           JOptionPane.showMessageDialog(this,prof);
+           ImageIcon imgs = new ImageIcon(getClass().getResource("/Images/"+prof+""));
+//           JOptionPane.showMessageDialog(this,imgs);
+           jLblcam.setIcon(imgs);
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Officials.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+      public void popPosition(){
+          
+          jCmbPositionChoice.removeAllItems();
+        try {
+        String LoginQuery = "SELECT * FROM positions WHERE resident_id = 0";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+       
+        
+        
+        
+        while(rs.next()){
+            jCmbPositionChoice.addItem(rs.getString("position_descrip"));
+           
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Officials.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    
+     }
+   
+   private void showAllOfficials(){
+    try {
+        DefaultTableModel model = (DefaultTableModel)jTblofficials.getModel();
+        Object[] rows = new Object[3];
+        String LoginQuery = "SELECT * FROM positions";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        while(rs.next()){
+            
+             String resQuery = "SELECT * FROM resident WHERE id ='" + rs.getInt("resident_id") +"'";
+             Statement resst = connection.createStatement();
+                ResultSet resrs = resst.executeQuery(resQuery);
+                rows[0] = rs.getInt("resident_id");
+                rows[1] = rs.getString("position_descrip");
+            if(resrs.next()){
+            String fullname = resrs.getString("first_name") + " " + resrs.getString("middle_name") + " " + resrs.getString("last_name");            
+            rows[2] = fullname;
+            
+           }else{
+                 rows[2] = " ";
+            }
+            
+             model.addRow(rows);
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Positions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    }
+   
+   void fetchSelectedPositions(int ids){
+    try {
+        String LoginQuery = "SELECT * FROM positions where id = '"+ids+"'";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        String gender;
+        
+        while(rs.next()){
+            jTxtFld_id.setText(String.valueOf(rs.getInt("id")));
+            jTxtFN1.setText(rs.getString("first_name"));
+            jTxtMaiden.setText(rs.getString("middle_name"));
+            jTxtSN1.setText(rs.getString("last_name"));
+            int gen = Integer.parseInt(rs.getString("gender"));
+            if (gen==0) {
+                jcbboy.setSelected(true);
+            }else{
+                jcbgirl.setSelected(true);
+            }
+            jTxtCit1.setText(rs.getString("citizenship"));
+            jTxtRel1.setText(rs.getString("religion"));
+            jTxtDOB.setDate(rs.getDate("DoB"));
+            jTxtPOB1.setText(rs.getString("PoB"));
+            jTxtContactNo1.setText(rs.getString("contact_num"));
+            jTxtHN1.setText(rs.getString("house_num"));
+            jTxtCivil.setText(rs.getString("civil_stat"));
+            jTxtPurok.setText(rs.getString("purok_name"));
+        }
+    }
+        catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Positions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -575,62 +725,42 @@ public class Officials extends javax.swing.JFrame {
     private javax.swing.JButton jBtnAdd;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnUpdate;
-    private javax.swing.JButton jBttnCap;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JButton jBttnExit;
+    private javax.swing.JButton jBttnSearch;
+    private javax.swing.JComboBox<String> jCmbPositionChoice;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLbPosition1l;
+    private javax.swing.JLabel jLblCitizen;
+    private javax.swing.JLabel jLblCivil;
+    private javax.swing.JLabel jLblDob;
+    private javax.swing.JLabel jLblFname;
+    private javax.swing.JLabel jLblGender;
+    private javax.swing.JLabel jLblHouseNum;
+    private javax.swing.JLabel jLblHousenum;
+    private javax.swing.JLabel jLblLname;
+    private javax.swing.JLabel jLblMaiden;
+    private javax.swing.JLabel jLblPOB;
     private javax.swing.JLabel jLblPurok;
+    private javax.swing.JLabel jLblReligion;
     private javax.swing.JLabel jLblcam;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTblOfficial;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTblVoters;
+    private javax.swing.JTable jTblofficials;
     private javax.swing.JTextField jTxtCit1;
-    private javax.swing.JTextField jTxtCits;
-    private javax.swing.JTextField jTxtCivStat1;
-    private javax.swing.JTextField jTxtCivStatus;
+    private javax.swing.JTextField jTxtCivil;
     private javax.swing.JTextField jTxtContactNo1;
-    private javax.swing.JTextField jTxtContactNum;
-    private javax.swing.JTextField jTxtDOB1;
-    private javax.swing.JTextField jTxtDOBirth;
+    private com.toedter.calendar.JDateChooser jTxtDOB;
     private javax.swing.JTextField jTxtFN1;
-    private javax.swing.JTextField jTxtFName;
+    private javax.swing.JTextField jTxtFldSearch;
+    private javax.swing.JTextField jTxtFld_id;
     private javax.swing.JTextField jTxtHN1;
-    private javax.swing.JTextField jTxtHNumber;
-    private javax.swing.JTextField jTxtLastName;
-    private javax.swing.JTextField jTxtMaiden1;
-    private javax.swing.JTextField jTxtMaidenName;
+    private javax.swing.JTextField jTxtMaiden;
     private javax.swing.JTextField jTxtPOB1;
-    private javax.swing.JTextField jTxtPOBirth;
-    private javax.swing.JTextField jTxtPass;
     private javax.swing.JTextField jTxtPurok;
     private javax.swing.JTextField jTxtRel1;
-    private javax.swing.JTextField jTxtRelig;
     private javax.swing.JTextField jTxtSN1;
-    private javax.swing.JTextField jTxtUsername;
     private javax.swing.JCheckBox jcbboy;
     private javax.swing.JCheckBox jcbgirl;
     // End of variables declaration//GEN-END:variables

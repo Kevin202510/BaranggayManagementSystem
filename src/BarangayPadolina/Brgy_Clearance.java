@@ -1,5 +1,12 @@
 package BarangayPadolina;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +24,7 @@ public class Brgy_Clearance extends javax.swing.JFrame {
      */
     public Brgy_Clearance() {
         initComponents();
+        printAllOfficials();
     }
 
     /**
@@ -71,13 +79,11 @@ public class Brgy_Clearance extends javax.swing.JFrame {
 
         jPnlTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (2).png"))); // NOI18N
-        jLblIcon1.setText("asdasd");
-        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 100, 106));
+        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (7).png"))); // NOI18N
+        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 100, 106));
 
-        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
-        jLblIcon2.setText("jLabel1");
-        jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 100, 106));
+        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (6).png"))); // NOI18N
+        jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 106));
 
         jLblRepublic1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLblRepublic1.setText("Republic of the Philippines");
@@ -106,7 +112,7 @@ public class Brgy_Clearance extends javax.swing.JFrame {
 
         jLblChairman1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLblChairman1.setText("<html> <u style=\"color:blue\">Hon. Virgilio B, Domingo.</u><br> <center> Brgy Chairman </center> </br> </html>");
-        jPnlOfficials1.add(jLblChairman1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 54, -1, -1));
+        jPnlOfficials1.add(jLblChairman1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLblKagawad0.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLblKagawad0.setText("<html><u style=\"color:blue\"> Hon. Virgilio B, Custodio, Jr.</u> <br> <center> Kagawad </center> </br> </html>");
@@ -191,7 +197,6 @@ public class Brgy_Clearance extends javax.swing.JFrame {
         jPnlContent1.add(jLblCaptainPirma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 150, 80));
 
         jLblDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblDate.setText("<html>_____________,2021</html>");
         jPnlContent1.add(jLblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 160, 40));
 
         jLblBorder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -238,6 +243,78 @@ public class Brgy_Clearance extends javax.swing.JFrame {
                 new Brgy_Clearance().setVisible(true);
             }
         });
+    }
+    
+    
+      SqlConnection getDBConn = new SqlConnection();
+    Connection connection = getDBConn.DbconnectP();
+    
+    private void printAllOfficials(){
+    try {
+        
+        String LoginQuery = "SELECT * FROM positions";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+        while(rs.next()){
+             
+             String resQuery = "SELECT * FROM resident WHERE id ='" + rs.getInt("resident_id") +"'";
+             Statement resst = connection.createStatement();
+                ResultSet resrs = resst.executeQuery(resQuery);
+                //rows[0] = rs.getInt("resident_id");
+               
+                String posit = rs.getString("position_descrip");
+                 
+                 String fullname = "";
+                //JOptionPane.showMessageDialog(this,fullname);
+                
+                if(resrs.next()){
+                     fullname = resrs.getString("first_name") + " " + resrs.getString("middle_name") + " " + resrs.getString("last_name");            
+                    
+
+                   }else{
+                        fullname = "";
+                    }
+                 if(posit.equals("Chairman")){
+                    jLblChairman1.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center> Brgy Chairman </center> </br> </html>");
+                }
+                if(posit.equals("Kagawad1")){
+                     jLblKagawad0.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("Kagawad2")){
+                     jLblKagawad1.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("Kagawad3")){
+                     jLblKagawad2.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("Kagawad4")){
+                     jLblKagawad3.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("Kagawad5")){
+                     jLblKagawad4.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("Kagawad6")){
+                     jLblKagawad5.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                 if(posit.equals("Kagawad7")){
+                     jLblKagawad6.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+                if(posit.equals("jLblSecretary0 ")){
+                     jLblSecretary0.setText("<html> <u style='color:blue'>"+fullname +"</u><br> <center>Kagawad</center> </br> </html>");
+                }
+        
+//            if(resrs.next()){
+//            String fullname = resrs.getString("first_name") + " " + resrs.getString("middle_name") + " " + resrs.getString("last_name");            
+//            rows[2] = fullname;
+//            
+//           }else{
+//                 rows[2] = " ";
+//            }
+            
+       
+        }
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Positions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

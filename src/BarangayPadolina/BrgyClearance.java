@@ -23,12 +23,12 @@ public class BrgyClearance extends javax.swing.JPanel {
     public BrgyClearance() {
         initComponents();
         jLabel26.setText(getDateNow());
-        String Fullname = JOptionPane.showInputDialog(null,"Fullname");
-        String Dob = JOptionPane.showInputDialog(null,"Dob");
-        jLblPangalan0.setText(Fullname);
-        jLblBirthday1.setText(Dob);
-        jLblPangalan1.setText(Fullname);
-        jLblPangalanatPirma0.setText(Fullname);
+//        String Fullname = JOptionPane.showInputDialog(null,"Fullname");
+//        String Dob = JOptionPane.showInputDialog(null,"Dob");
+//        jLblPangalan0.setText(Fullname);
+//        jLblBirthday1.setText(Dob);
+//        jLblPangalan1.setText(Fullname);
+//        jLblPangalanatPirma0.setText(Fullname);
     }
     
     public String getDateNow(){
@@ -88,12 +88,10 @@ public class BrgyClearance extends javax.swing.JPanel {
 
         jPnlTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (2).png"))); // NOI18N
-        jLblIcon1.setText("asdasd");
+        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
         jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 100, 106));
 
         jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
-        jLblIcon2.setText("jLabel1");
         jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 100, 106));
 
         jLblRepublic1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N

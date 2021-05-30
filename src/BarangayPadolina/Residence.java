@@ -6,11 +6,17 @@
 package BarangayPadolina;
 
 import com.github.sarxos.webcam.Webcam;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +26,9 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -36,9 +44,10 @@ Webcam wc;
 
     public Residence() {
         initComponents();
-        jBtnRDelete.setVisible(false);
-        jBtnEdit.setVisible(false);
+        jBtnRDelete.setVisible(true);
+        jBtnEdit.setVisible(true);
         wc = Webcam.getDefault();
+        popPurok();
         showAllResidence();
 //        wc.setViewSize(WebcamResolution.VGA.getSize());Q#@$@$Q
     }
@@ -53,15 +62,14 @@ Webcam wc;
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTxtFN = new javax.swing.JTextField();
         jTxtMaiden = new javax.swing.JTextField();
-        jTxtCit = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jChckMale = new javax.swing.JCheckBox();
+        jChckFemale = new javax.swing.JCheckBox();
         jTxtSN = new javax.swing.JTextField();
         jTxtRel = new javax.swing.JTextField();
-        jTxtCivStat = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -86,11 +94,15 @@ Webcam wc;
         jTxtDOB = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jTxtPurok = new javax.swing.JTextField();
         jLblPurok = new javax.swing.JLabel();
+        jCmbPurok = new javax.swing.JComboBox<>();
+        jTxtCit = new javax.swing.JTextField();
+        jCmbCivStat = new javax.swing.JComboBox<>();
+        jRdYes = new javax.swing.JRadioButton();
+        jRdNo = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -106,113 +118,104 @@ Webcam wc;
                 jTxtFNKeyTyped(evt);
             }
         });
-        jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 30));
-        jPanel1.add(jTxtMaiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 30));
+        jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 160, 30));
+        jPanel1.add(jTxtMaiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 160, 30));
 
-        jTxtCit.addActionListener(new java.awt.event.ActionListener() {
+        jChckMale.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jChckMale);
+        jChckMale.setText("Male");
+        jChckMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCitActionPerformed(evt);
+                jChckMaleActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtCit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 160, 30));
+        jPanel1.add(jChckMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, 30));
 
-        jCheckBox1.setBackground(new java.awt.Color(102, 204, 255));
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setText("Male");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 30));
-
-        jCheckBox2.setBackground(new java.awt.Color(102, 204, 255));
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setText("Female");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jChckFemale.setBackground(new java.awt.Color(102, 204, 255));
+        buttonGroup1.add(jChckFemale);
+        jChckFemale.setText("Female");
+        jChckFemale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jChckFemaleActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, 30));
+        jPanel1.add(jChckFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, 30));
 
         jTxtSN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtSNActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 30));
+        jPanel1.add(jTxtSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 160, 30));
 
         jTxtRel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtRelActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtRel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 160, 30));
-
-        jTxtCivStat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCivStatActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtCivStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 160, 30));
+        jPanel1.add(jTxtRel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 160, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel1.setText("First Name:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 70, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 70, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel2.setText("Maiden Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 80, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel3.setText("Last Name:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 70, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 70, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel4.setText("Gender:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 60, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 60, 30));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel5.setText("Citizenship:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 70, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 70, 30));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setText("Religion:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 50, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 50, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel7.setText("Civil Status:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 70, 30));
 
         jTxtPOB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtPOBActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtPOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 160, 30));
+        jPanel1.add(jTxtPOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 160, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel8.setText("DOB:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 30, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 30, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel9.setText("POB:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 30, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 30, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel10.setText("Contact Number:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel11.setText("House Number:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 90, 30));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 90, 30));
 
         jTxtContactNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtContactNoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 160, 30));
-        jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 160, 30));
+        jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 160, 30));
+        jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 160, 30));
 
         jlbl_profile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 120));
+        jPanel1.add(jlbl_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 120));
 
         jBttnCap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/compact-camera-16.png"))); // NOI18N
         jBttnCap.setText("TAKE");
@@ -222,18 +225,18 @@ Webcam wc;
                 jBttnCapActionPerformed(evt);
             }
         });
-        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 100, -1));
+        jPanel1.add(jBttnCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 100, -1));
 
         jtbl_residents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Fullname", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok ID"
+                "ID", "Fullname", "Gender", "Citizenship", "Religion", "Civil Status", "DOB", "POB", "Contact.No", "House #", "Purok Name", "Registered Voter"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -253,9 +256,10 @@ Webcam wc;
             jtbl_residents.getColumnModel().getColumn(1).setMinWidth(150);
             jtbl_residents.getColumnModel().getColumn(1).setPreferredWidth(150);
             jtbl_residents.getColumnModel().getColumn(1).setMaxWidth(150);
+            jtbl_residents.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 940, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 770, 210));
 
         jBtnRAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
         jBtnRAdd.setText("ADD");
@@ -265,7 +269,7 @@ Webcam wc;
                 jBtnRAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 660, 120, 30));
+        jPanel1.add(jBtnRAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, 30));
 
         jBtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnEdit.setText("UPDATE");
@@ -275,7 +279,7 @@ Webcam wc;
                 jBtnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 120, 30));
+        jPanel1.add(jBtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 120, 30));
 
         jBtnRDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/disapprove-16.png"))); // NOI18N
         jBtnRDelete.setText("DELETE");
@@ -285,8 +289,8 @@ Webcam wc;
                 jBtnRDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 120, 30));
-        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 160, 30));
+        jPanel1.add(jBtnRDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 120, 30));
+        jPanel1.add(jTxtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 160, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/x-mark-2-16.png"))); // NOI18N
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -295,27 +299,75 @@ Webcam wc;
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 20, 40, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, 30));
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("RESIDENCE");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 480, 60));
-        jPanel1.add(jTxtPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, 160, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 420, 60));
 
         jLblPurok.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLblPurok.setText("Purok:");
-        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, -1, -1));
+        jPanel1.add(jLblPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+
+        jCmbPurok.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jCmbPurok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbPurokActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCmbPurok, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 160, 30));
+
+        jTxtCit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTxtCit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 160, 30));
+
+        jCmbCivStat.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jCmbCivStat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Married", "Widow" }));
+        jCmbCivStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbCivStatActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCmbCivStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 160, 30));
+
+        buttonGroup2.add(jRdYes);
+        jRdYes.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRdYes.setText("Yes");
+        jRdYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRdYesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRdYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, -1, -1));
+
+        buttonGroup2.add(jRdNo);
+        jRdNo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRdNo.setText("No");
+        jRdNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRdNoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRdNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("Voter");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 100, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1303, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -331,9 +383,9 @@ Webcam wc;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtFNActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jChckFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChckFemaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jChckFemaleActionPerformed
 
     private void jTxtSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSNActionPerformed
         // TODO add your handling code here:
@@ -342,14 +394,6 @@ Webcam wc;
     private void jTxtRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtRelActionPerformed
-
-    private void jTxtCivStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCivStatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCivStatActionPerformed
-
-    private void jTxtCitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCitActionPerformed
 
     private void jTxtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNoActionPerformed
         // TODO add your handling code here:
@@ -366,8 +410,10 @@ Webcam wc;
             new VideoFeeder().start();
         }else{
              try {
-                 ImageIO.write(wc.getImage(), "JPG", new File("src/Images/" + jTxtFN.getText() + ".jpg"));
+             //JOptionPane.showMessageDialog(this,new SimpleDateFormat("HH_mm_ss").format(jTxtDOB.getDate())); 
+                 ImageIO.write(wc.getImage(), "JPG", new File("src/Images/" + jTxtFN.getText() +  jTxtSN.getText()+ new SimpleDateFormat("HH_mm_ss").format(jTxtDOB.getDate()) + ".jpg"));
                  wc.close();
+                 jBttnCap.setText("TAKE");
              } catch (IOException ex) {
                  java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
              }
@@ -375,11 +421,55 @@ Webcam wc;
     }//GEN-LAST:event_jBttnCapActionPerformed
 
     private void jBtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditActionPerformed
-        updateResident(selectedData);
-    }//GEN-LAST:event_jBtnEditActionPerformed
+         
+        Date petsanow = new Date();
+        int taon  = 0;
+      if(jTxtDOB.getDate() != null){
+         taon =   petsanow.getYear() -   jTxtDOB.getDate().getYear();
+         if(petsanow.getMonth() > jTxtDOB.getDate().getMonth() ){
+                taon -=1;
+            
+            }
+      }
+        if (jlbl_profile.getIcon() == null || jTxtFN.getText().isBlank() || jTxtMaiden.getText().isBlank() || jTxtSN.getText().isBlank() || !(jChckMale.isSelected() || jChckFemale.isSelected()) || jTxtCit.getText().isBlank() || jTxtRel.getText().isBlank() || jTxtDOB.getDate() == null || jTxtPOB.getText().isBlank() || jTxtContactNo.getText().isBlank() || jTxtHN.getText().isBlank() || !(jRdYes.isSelected() || jRdNo.isSelected())){
+               JOptionPane.showMessageDialog(this,"Please Fill up all information and check the picture "); 
+        } else if(petsanow.getTime() < jTxtDOB.getDate().getTime() ){
+               JOptionPane.showMessageDialog(this,"Not yet born!"); 
+        }
+        else if(taon <18 && jRdYes.isSelected()){
+               JOptionPane.showMessageDialog(this,"Not Yet Qualified to Vote"); 
 
+  
+        }else{
+               //JOptionPane.showMessageDialog(this,"Update"); 
+          updateResident(selectedData);
+    }//GEN-LAST:event_jBtnEditActionPerformed
+  }
     private void jBtnRAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRAddActionPerformed
-        addResident();
+        
+        Date petsanow = new Date();
+        int taon  = 0;
+      if(jTxtDOB.getDate() != null){
+         taon =   petsanow.getYear() -   jTxtDOB.getDate().getYear();
+         if(petsanow.getMonth() > jTxtDOB.getDate().getMonth() ){
+                taon -=1;
+            
+            }
+      }
+        if (jlbl_profile.getIcon() == null || jTxtFN.getText().isBlank() || jTxtMaiden.getText().isBlank() || jTxtSN.getText().isBlank() || !(jChckMale.isSelected() || jChckFemale.isSelected()) || jTxtCit.getText().isBlank() || jTxtRel.getText().isBlank() || jTxtDOB.getDate() == null || jTxtPOB.getText().isBlank() || jTxtContactNo.getText().isBlank() || jTxtHN.getText().isBlank() || !(jRdYes.isSelected() || jRdNo.isSelected())){
+               JOptionPane.showMessageDialog(this,"Please Fill up all information and check the picture "); 
+        } else if(petsanow.getTime() < jTxtDOB.getDate().getTime() ){
+               JOptionPane.showMessageDialog(this,"Not yet born!"); 
+        }
+        else if(taon <18 && jRdYes.isSelected()){
+               JOptionPane.showMessageDialog(this,"Not Yet Qualified to Vote"); 
+
+  
+        }else{
+               //JOptionPane.showMessageDialog(this,"Add"); 
+         addResident();
+        }
+        
     }//GEN-LAST:event_jBtnRAddActionPerformed
     
     int selectedData;
@@ -387,7 +477,7 @@ Webcam wc;
     private void jtbl_residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_residentsMouseClicked
         selectedData = Integer.parseInt(jtbl_residents.getValueAt(jtbl_residents.getSelectedRow(),0).toString());
         fetchSelectedResident(selectedData);
-        jBtnRAdd.setVisible(false);
+        jBtnRAdd.setVisible(true);
         jBtnRDelete.setVisible(true);
         jBtnEdit.setVisible(true);
     }//GEN-LAST:event_jtbl_residentsMouseClicked
@@ -412,6 +502,33 @@ Webcam wc;
              evt.consume();
           }
     }//GEN-LAST:event_jTxtFNKeyTyped
+
+    private void jTxtCitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCitActionPerformed
+
+    private void jCmbPurokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbPurokActionPerformed
+//        int index =  jCmbPurok.getSelectedIndex();
+//        if(index == 0){
+//         printReceipt(new BrgyClearance());
+//        }
+    }//GEN-LAST:event_jCmbPurokActionPerformed
+
+    private void jRdYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRdYesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRdYesActionPerformed
+
+    private void jRdNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRdNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRdNoActionPerformed
+
+    private void jChckMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChckMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jChckMaleActionPerformed
+
+    private void jCmbCivStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbCivStatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCmbCivStatActionPerformed
     
     SqlConnection getDBConn = new SqlConnection();
     Connection connection = getDBConn.DbconnectP();
@@ -441,10 +558,10 @@ Webcam wc;
             rows[5] = rs.getString("civil_stat");
             rows[6] = rs.getString("DoB");
             rows[7] = rs.getString("PoB");
-//            rows[8] = rs.getString("occupation");
             rows[8] = rs.getString("contact_num");
             rows[9] = rs.getString("house_num");
-            rows[10] = rs.getInt("purok_id");
+            rows[10] = rs.getString("purok_name");
+            rows[11] = rs.getInt("IsVoter");
             model.addRow(rows);
             
         }
@@ -453,6 +570,27 @@ Webcam wc;
         java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     }
+    
+    void popPurok(){
+        try {
+        String LoginQuery = "SELECT * FROM puroks";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(LoginQuery);
+       
+        
+        
+        
+        while(rs.next()){
+            jCmbPurok.addItem(rs.getString("purok_descrip"));
+           
+        }
+        
+    } catch (SQLException ex) {
+        java.util.logging.Logger.getLogger(Residence.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    
+    }
+    
     
     private void fetchSelectedResident(int ids){
     try {
@@ -468,19 +606,26 @@ Webcam wc;
             jTxtSN.setText(rs.getString("last_name"));
             int gen = Integer.parseInt(rs.getString("gender"));
             if (gen==0) {
-                jCheckBox1.setSelected(true);
+                jChckMale.setSelected(true);
             }else{
-                jCheckBox2.setSelected(true);
+                jChckFemale.setSelected(true);
             }
             jTxtCit.setText(rs.getString("citizenship"));
             jTxtRel.setText(rs.getString("religion"));
-            jTxtCivStat.setText(rs.getString("civil_stat"));
+              String stat = rs.getString("civil_stat");
+            jCmbCivStat.setSelectedItem(stat);
             jTxtDOB.setDate(rs.getDate("DoB"));
            jTxtPOB.setText(rs.getString("PoB"));
+           int vote = rs.getInt("IsVoter");
+            if (vote==0) {
+                jRdNo.setSelected(true);
+            }else{
+                jRdYes.setSelected(true);
+            }
            jTxtContactNo.setText(rs.getString("contact_num"));
            jTxtHN.setText(rs.getString("house_num"));
            String prof = rs.getString("profile");
-//           JOptionPane.showMessageDialog(this,prof);
+           JOptionPane.showMessageDialog(this,prof);
            ImageIcon imgs = new ImageIcon(getClass().getResource("/Images/"+prof+""));
 //           JOptionPane.showMessageDialog(this,imgs);
            jlbl_profile.setIcon(imgs);
@@ -498,7 +643,7 @@ Webcam wc;
         jTxtDOB.setDate(null);
         jTxtCit.setText("");
         jTxtRel.setText("");
-        jTxtCivStat.setText("");
+        jCmbCivStat.setSelectedIndex(0);
         jTxtPOB.setText("");
         jTxtContactNo.setText("");
         jTxtHN.setText("");
@@ -509,26 +654,31 @@ Webcam wc;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
         String strDate = dateFormat.format(jTxtDOB.getDate());
     try {
-        String addresident = "INSERT INTO `resident` (`first_name`, `middle_name`, `last_name`, `gender`, `DoB`, `PoB`, `civil_stat`, `citizenship`, `religion`,`contact_num`, `purok_id`, `house_num`, `profile`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String addresident = "INSERT INTO `resident` (`first_name`, `middle_name`, `last_name`, `gender`, `DoB`, `PoB`, `civil_stat`, `citizenship`, `religion`,`contact_num`, `purok_name`, `house_num`, `profile`,`IsVoter`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st = connection.prepareStatement(addresident);
         st.setString(1, jTxtFN.getText());
         st.setString(2, jTxtMaiden.getText());
         st.setString(3, jTxtSN.getText());
-          if (jCheckBox1.isSelected()) {
+          if (jChckMale.isSelected()) {
               gender=0;
-        }else if (jCheckBox2.isSelected()) {
+        }else if (jChckFemale.isSelected()) {
             gender=1;
         }
         st.setInt(4, gender);
         st.setString(5, strDate);
         st.setString(6, jTxtPOB.getText());
-        st.setString(7, jTxtCivStat.getText());
+        st.setString(7, jCmbCivStat.getSelectedItem().toString());
         st.setString(8, jTxtCit.getText());
         st.setString(9, jTxtRel.getText());
         st.setString(10, jTxtContactNo.getText());
-        st.setInt(11, 1);
+        st.setString(11, jCmbPurok.getSelectedItem().toString());
         st.setString(12, jTxtHN.getText());
-        st.setString(13, jTxtFN.getText()+".jpg");
+        st.setString(13, jTxtFN.getText() +  jTxtSN.getText()+ new SimpleDateFormat("HH_mm_ss").format(jTxtDOB.getDate()) + ".jpg");
+        if (jRdYes.isSelected()) {
+           st.setInt(14, 1);
+        }else if (jRdNo.isSelected()) {
+            st.setInt(14, 0);
+        }
         int i = st.executeUpdate();
         if (i > 0) {
             JOptionPane.showMessageDialog(this,"Successfully Added");
@@ -552,31 +702,36 @@ Webcam wc;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
         String strDate = dateFormat.format(jTxtDOB.getDate());
          try {
-            String addresident = "UPDATE `resident` SET `first_name` = ?, `middle_name`= ?, `last_name`= ?, `gender`= ?, `DoB`= ?, `PoB`= ?, `civil_stat`= ?, `citizenship`= ?, `religion`= ?,`contact_num`= ?, `purok_id`= ?, `house_num`= ?, `profile`= ? WHERE id =?";
+            String addresident = "UPDATE `resident` SET `first_name` = ?, `middle_name`= ?, `last_name`= ?, `gender`= ?, `DoB`= ?, `PoB`= ?, `civil_stat`= ?, `citizenship`= ?, `religion`= ?,`contact_num`= ?, `purok_name`= ?, `house_num`= ?, `profile`= ?, `IsVoter`=? WHERE id =?";
             PreparedStatement st = connection.prepareStatement(addresident);
             st.setString(1, jTxtFN.getText());
             st.setString(2, jTxtMaiden.getText());
             st.setString(3, jTxtSN.getText());
-              if (jCheckBox1.isSelected()) {
+              if (jChckMale.isSelected()) {
                   gender=0;
-            }else if (jCheckBox2.isSelected()) {
+            }else if (jChckFemale.isSelected()) {
                 gender=1;
             }
             st.setInt(4, gender);
             st.setString(5,strDate );
             st.setString(6, jTxtPOB.getText());
-            st.setString(7, jTxtCivStat.getText());
+            st.setString(7, jCmbCivStat.getSelectedItem().toString());
             st.setString(8, jTxtCit.getText());
             st.setString(9, jTxtRel.getText());
             st.setString(10, jTxtContactNo.getText());
-            st.setInt(11, 1);
+            st.setString(11, jCmbPurok.getSelectedItem().toString());
             st.setString(12, jTxtHN.getText());
-            st.setString(13, jTxtFN.getText()+".jpg");
-            st.setInt(14,id);
+            st.setString(13, jTxtFN.getText() +  jTxtSN.getText()+ new SimpleDateFormat("HH_mm_ss").format(jTxtDOB.getDate()) + ".jpg");
+            if (jRdYes.isSelected()) {
+           st.setInt(14, 1);
+        }else if (jRdNo.isSelected()) {
+            st.setInt(14, 0);
+        }
+            st.setInt(15,id);
+           // JOptionPane.showMessageDialog(this,"d2");
             int i = st.executeUpdate();
             if (i > 0) {
-                JOptionPane.showMessageDialog(this,"Successfully Added");
-    //            tanggalinAngLamanNgPosition();
+                JOptionPane.showMessageDialog(this,"Successfully Updated");
                 DefaultTableModel mod = (DefaultTableModel)jtbl_residents.getModel();
                 mod.setRowCount(0);
                 showAllResidence();
@@ -653,17 +808,21 @@ Webcam wc;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBtnEdit;
     private javax.swing.JButton jBtnRAdd;
     private javax.swing.JButton jBtnRDelete;
     private javax.swing.JButton jBttnCap;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jChckFemale;
+    private javax.swing.JCheckBox jChckMale;
+    private javax.swing.JComboBox<String> jCmbCivStat;
+    private javax.swing.JComboBox<String> jCmbPurok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -674,16 +833,16 @@ Webcam wc;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLblPurok;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRdNo;
+    private javax.swing.JRadioButton jRdYes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtCit;
-    private javax.swing.JTextField jTxtCivStat;
     private javax.swing.JTextField jTxtContactNo;
     private com.toedter.calendar.JDateChooser jTxtDOB;
     private javax.swing.JTextField jTxtFN;
     private javax.swing.JTextField jTxtHN;
     private javax.swing.JTextField jTxtMaiden;
     private javax.swing.JTextField jTxtPOB;
-    private javax.swing.JTextField jTxtPurok;
     private javax.swing.JTextField jTxtRel;
     private javax.swing.JTextField jTxtSN;
     private javax.swing.JLabel jlbl_profile;
@@ -705,4 +864,5 @@ Webcam wc;
           }
     
     }
-}
+    
+   }

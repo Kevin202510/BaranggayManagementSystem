@@ -36,10 +36,6 @@ public class Permits extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTxtFN = new javax.swing.JTextField();
-        jTxtContactNo = new javax.swing.JTextField();
-        jTxtHN = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,22 +112,6 @@ public class Permits extends javax.swing.JFrame {
         });
         jPanel1.add(jTxtFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 160, 30));
 
-        jTxtContactNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtContactNoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTxtContactNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, 160, 30));
-        jPanel1.add(jTxtHN, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, 160, 30));
-
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel11.setText("House Number:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 90, 30));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jLabel10.setText("Contact Number:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 100, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,10 +134,6 @@ public class Permits extends javax.swing.JFrame {
     private void jTxtFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtFNActionPerformed
-
-    private void jTxtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtContactNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtContactNoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -204,14 +180,10 @@ public class Permits extends javax.swing.JFrame {
     private javax.swing.JButton jBtnupdate1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTxtContactNo;
     private javax.swing.JTextField jTxtFN;
-    private javax.swing.JTextField jTxtHN;
     // End of variables declaration//GEN-END:variables
 }

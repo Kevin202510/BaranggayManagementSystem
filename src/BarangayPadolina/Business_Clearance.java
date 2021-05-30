@@ -63,12 +63,10 @@ public class Business_Clearance extends javax.swing.JPanel {
 
         jPnlTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (2).png"))); // NOI18N
-        jLblIcon1.setText("asdasd");
-        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 100, 106));
+        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (6).png"))); // NOI18N
+        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 100, 106));
 
-        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
-        jLblIcon2.setText("jLabel1");
+        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (7).png"))); // NOI18N
         jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 100, 106));
 
         jLblRepublic1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N

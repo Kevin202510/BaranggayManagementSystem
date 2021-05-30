@@ -77,6 +77,7 @@ public class Blotters extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1340, 768));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jBtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/add-user-16.png"))); // NOI18N
         jBtnAdd.setText("Add");
         jBtnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +87,7 @@ public class Blotters extends javax.swing.JFrame {
         });
         jPanel1.add(jBtnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 170, 30));
 
+        jBtnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/edit-4-16.png"))); // NOI18N
         jBtnUpdate.setText("Update");
         jBtnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -197,13 +199,14 @@ public class Blotters extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 980, 270));
         jPanel1.add(jdate_of_hearing, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 180, 30));
 
-        jButton2.setText("jButton2");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/printer-4-16.png"))); // NOI18N
+        jButton2.setText("Print");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

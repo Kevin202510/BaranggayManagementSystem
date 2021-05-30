@@ -60,12 +60,10 @@ public class Brgy_Indigency extends javax.swing.JPanel {
 
         jPnlTitle1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (2).png"))); // NOI18N
-        jLblIcon1.setText("asdasd");
-        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 106));
+        jLblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (6).png"))); // NOI18N
+        jPnlTitle1.add(jLblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 100, 106));
 
-        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (3).png"))); // NOI18N
-        jLblIcon2.setText("jLabel1");
+        jLblIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BrgyLogo/output-onlinepngtools (7).png"))); // NOI18N
         jPnlTitle1.add(jLblIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 100, 100));
 
         jLblRepublic1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
@@ -217,8 +215,7 @@ public class Brgy_Indigency extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
-                                .addComponent(jLblCaptainPirma, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLblCaptainPirma, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLblPaalala, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
